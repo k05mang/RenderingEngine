@@ -1,6 +1,6 @@
+#pragma once
 #include <vector>
 #include "HalfEdge.h"
-#pragma once
 
 class Face
 {

@@ -1,5 +1,5 @@
-#include "Face.h"
 #pragma once
+#include "Face.h"
 
 class HalfEdge
 {

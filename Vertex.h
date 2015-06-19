@@ -1,7 +1,7 @@
+#pragma once
 #include <vec3.hpp>
 #include <vec2.hpp>
 #include <vector>
-#pragma once;
 
 class Vertex{
 private:
