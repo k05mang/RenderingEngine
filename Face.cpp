@@ -36,5 +36,12 @@ void Face::storePrim(std::vector<int>& storage)
 
 void Face::storePrimAdj(std::vector<int>& storage)
 {
+	storage.push_back(e1.emitVert);
+	storage.push_back(e1.opposite->emitVert);
 
+	storage.push_back(e2.emitVert);
+	storage.push_back(e2.opposite->emitVert);
+
+	storage.push_back(e3.emitVert);
+	storage.push_back(e3.opposite->emitVert);
 }
