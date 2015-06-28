@@ -68,11 +68,15 @@
   <ItemGroup>
     <ClInclude Include="Face.h" />
     <ClInclude Include="HalfEdge.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderParser.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Face.cpp" />
     <ClCompile Include="HalfEdge.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderParser.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
