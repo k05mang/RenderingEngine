@@ -18,6 +18,8 @@ public:
 	Vertex(Vertex&& moveTarget);
 	Vertex& operator= (Vertex&& moveTarget);
 
+	bool operator== (const Vertex& equal) const;
+
 	/*
 		Gets the position stored in this vertex
 	*/

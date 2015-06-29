@@ -36,6 +36,11 @@ Vertex& Vertex::operator= (Vertex&& moveTarget)
 	return *this;
 }
 
+bool Vertex::operator== (const Vertex& equal) const
+{
+
+}
+
 glm::vec3& Vertex::getPos()
 {
 	return pos;
