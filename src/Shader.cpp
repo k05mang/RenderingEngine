@@ -17,7 +17,11 @@ Shader::Shader(const Shader& copy)
 
 Shader& Shader::operator= (const Shader& copy)
 {
+    if (this != &copy){// handle self assignment
 
+    }
+
+    return *this;
 }
 
 Shader::Shader(Shader&& moveTarget)

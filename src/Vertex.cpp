@@ -10,16 +10,18 @@ Vertex::Vertex(float x, float y, float z,
 
 Vertex::Vertex(const Vertex& copy) : pos(copy.pos), normal(copy.normal), uv(copy.uv)
 {
-	
+
 }
 
 Vertex& Vertex::operator= (const Vertex& copy)
 {
-	pos = copy.pos;
-	normal = copy.normal;
-	uv = copy.uv;
+	if (this != &copy){// handle self assignment
+       pos = copy.pos;
+       normal = copy.normal;
+       uv = copy.uv;
+    }
 
-	return *this;
+    return *this;
 }
 
 Vertex::Vertex(Vertex&& moveTarget) : pos(std::move(moveTarget.pos)), normal(std::move(moveTarget.normal)), uv(std::move(moveTarget.uv))
