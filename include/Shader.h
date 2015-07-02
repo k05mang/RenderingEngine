@@ -2,6 +2,7 @@
 
 #include "ShaderParser.h"
 #include <gl/GL.h>
+#include <glm.hpp>
 
 class Shader
 {
@@ -48,5 +49,6 @@ public:
 		Gets the list of strings that represent the uniforms parsed from the shader source code
 	*/
 	std::vector<std::string>& getUniforms();
-};
+
+}
 

@@ -40,7 +40,9 @@ Vertex& Vertex::operator= (Vertex&& moveTarget)
 
 bool Vertex::operator== (const Vertex& equal) const
 {
-
+	return pos == equal.pos &&
+		normal == equal.normal &&
+			uv == equal.uv;
 }
 
 glm::vec3& Vertex::getPos()
