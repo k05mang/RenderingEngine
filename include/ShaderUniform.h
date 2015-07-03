@@ -1,18 +1,13 @@
 #pragma once
 
-#include <glm>
+#include <glm/glm.h>
+#include <gl/GL.h>
 
 class ShaderUniform
 {
     private:
-        enum BaseType(
-                INT,
-                FLOAT,
-                UINT
-        ) base;
-
-        enum UniformType{
-                VEC1,
+        enum Type{
+                SINGLE,
                 VEC2,
                 VEC3,
                 VEC4,
@@ -33,20 +28,49 @@ class ShaderUniform
         } uniformType;
         GLint location;
     public:
-        ShaderUniform(GLuint program, std::string& type);
-        ~ShaderUniform();
-        ShaderUniform(const ShaderUniform& other);
-        ShaderUniform& operator=(const ShaderUniform& other);
-        ShaderUniform(ShaderUniform&& moveTarget);
-        ShaderUniform& operator= (ShaderUniform&& rhs);
+        ShaderUniform(std::string& type);
+        ~ShaderUniform() = default;
 
+        void getLocation(GLuint program, std::string& name);
+
+        /**
+         *
+         * Handles the data upload for uniforms that are float type vectors
+         *
+         * program: the shader program that this shader uniform is associated with
+         * values: the values to pass to the OpenGL function to set the uniform to
+         *
+         */
         void set(GLuint program, const GLfloat* values);
-        void set(GLuint program, const GLint* values);
-        void set(GLuint program, const GLuint* values);
-        void set(GLuint program, const GLboolean* values);
 
+        /**
+         *
+         * Handles the data upload for uniforms that are integer type vectors
+         *
+         * program: the shader program that this shader uniform is associated with
+         * values: the values to pass to the OpenGL function to set the uniform to
+         *
+         */
+        void set(GLuint program, const GLint* values);
+
+        /**
+         *
+         * Handles the data upload for uniforms that are unsigned integer type vectors
+         *
+         * program: the shader program that this shader uniform is associated with
+         * values: the values to pass to the OpenGL function to set the uniform to
+         *
+         */
+        void set(GLuint program, const GLuint* values);
+
+        /**
+         *
+         * Handles the data upload for uniforms that are matrix types
+         *
+         * program: the shader program that this shader uniform is associated with
+         * transpose: tells the OpenGL function whether it should transpose the values when they are being uploaded
+         * values: the values to pass to the OpenGL function to set the uniform to
+         *
+         */
         void set(GLuint program, bool transpose, const GLfloat* values);
-        void set(GLuint program, bool transpose, const GLint* values);
-        void set(GLuint program, bool transpose, const GLuint* values);
-        void set(GLuint program, bool transpose, const GLboolean* values);
 };

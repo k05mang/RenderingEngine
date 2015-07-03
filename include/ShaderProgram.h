@@ -25,16 +25,6 @@ class ShaderProgram
         void setUniform(const glm::vec3& vec);
         void setUniform(const glm::vec4& vec);
 
-        //double uniforms
-        void setUniform(double v1);
-        void setUniform(double v1, double v2);
-        void setUniform(double v1, double v2, double v3);
-        void setUniform(double v1, double v2, double v3, double v4);
-        void setUniform(const glm::dvec1& vec);
-        void setUniform(const glm::dvec2& vec);
-        void setUniform(const glm::dvec3& vec);
-        void setUniform(const glm::dvec4& vec);
-
         //int uniforms
         void setUniform(int v1);
         void setUniform(int v1, int v2);
