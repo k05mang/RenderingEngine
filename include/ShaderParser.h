@@ -13,11 +13,10 @@ private:
 public:
 	ShaderParser(std::string fileName);
 	~ShaderParser();
-	//copy and move constructors are not needed for this class
 	ShaderParser(const ShaderParser&) = delete;
-	ShaderParser(ShaderParser&&) = delete;
 	ShaderParser& operator= (const ShaderParser&) = delete;
-	ShaderParser& operator= (ShaderParser&&) = delete;
+	ShaderParser(ShaderParser&& moveTarget);
+	ShaderParser& operator= (ShaderParser&& rhs);
 
 	/*
 		Parses the shader code stored in the file given through the constructor and stores the extracted information

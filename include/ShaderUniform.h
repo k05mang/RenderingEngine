@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.h>
-#include <gl/GL.h>
+#include <GL/gl.h>
 
 class ShaderUniform
 {

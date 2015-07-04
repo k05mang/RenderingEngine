@@ -25,6 +25,8 @@ Face& Face::operator= (Face&& moveTarget)
 	e1 = std::move(moveTarget.e1);
 	e2 = std::move(moveTarget.e2);
 	e3 = std::move(moveTarget.e3);
+
+	return *this;
 }
 
 void Face::storePrim(std::vector<int>& storage)
