@@ -7,7 +7,19 @@
 */
 ShaderParser::ShaderParser(std::string fileName) : filename(fileName), source(nullptr)
 {
-	std::ifstream shaderFile
+	std::ifstream shaderFile(fileName);
+
+	if(shaderFile.is_open()){
+        while(!shaderFile.eof()){
+			std::string line;
+			getline(fileShader, line);
+			sourceVector.push_back(line);
+        }
+	}else{
+		std::cout << "Failed to open file: "+fileName;
+	}
+
+	shaderFile.close();
 }
 
 

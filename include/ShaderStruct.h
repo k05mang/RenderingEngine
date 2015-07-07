@@ -1,6 +1,5 @@
 #pragma once
 
-#include <ifstream>
 #include <string>
 #include <vector>
 
@@ -9,7 +8,7 @@ class ShaderStruct
     private:
         std::vector<std::string> fields;
     public:
-        ShaderStruct(std::ifstream& file);
+        ShaderStruct(std::string& file);
         ~ShaderStruct();
 
         ShaderStruct(const ShaderStruct&) = delete;

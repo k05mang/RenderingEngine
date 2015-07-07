@@ -3,7 +3,7 @@
 /*
     std::vector<std::string> fields;
 */
-ShaderStruct::ShaderStruct(std::ifstream& file)
+ShaderStruct::ShaderStruct(std::string& file)
 {
 
 }

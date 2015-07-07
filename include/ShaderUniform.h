@@ -6,6 +6,13 @@
 class ShaderUniform
 {
     private:
+
+        enum PrimType{
+            FLOAT,
+            INT,
+            UINT
+        } primitive;
+
         enum Type{
                 SINGLE,
                 VEC2,

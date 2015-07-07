@@ -1,6 +1,12 @@
 #include "ShaderUniform.h"
 
 /*
+    enum PrimType{
+            FLOAT,
+            INT,
+            UINT
+        } primitive;
+
      enum Type{
                 SINGLE,
                 VEC2,
@@ -27,16 +33,27 @@ ShaderUniform::ShaderUniform(std::string& type)
 {
     //determine the variable type
     if(type == "float"){
+        primitive = PrimType::FLOAT;
         uniformType = Type::SINGLE;
     }else if(type == "int"){
+        primitive = PrimType::INT;
         uniformType = Type::SINGLE;
     }else if(type == "uint"){
+        primitive = PrimType::UINT;
         uniformType = Type::SINGLE;
     }else if(type == "bool"){
+        primitive = PrimType::INT;
+        uniformType = Type::SINGLE;
+    }else if(
+             type.find("sampler") != type.length() ||
+             type.find("image") != type.length()
+             ){
+        primitive = PrimType::INT;
         uniformType = Type::SINGLE;
     }else{
         switch(type.front()){
             case 'v'://basic vector type which is a float type
+                primitive = PrimType::FLOAT;
                 switch(type.back()){
                     case '2':
                         uniformType = Type::VEC2;
@@ -50,6 +67,7 @@ ShaderUniform::ShaderUniform(std::string& type)
                 }
                 break;
             case 'm'://basic matrix type which is a float type
+                primitive = PrimType::FLOAT;
                 if(type.length() > 5){//this checks whether the matrix has more than one dimension specifier i.e. 2x3
                     switch(type.at(type.length()-3)){
                         case '2':
@@ -107,6 +125,7 @@ ShaderUniform::ShaderUniform(std::string& type)
                 }
                 break;
             case 'd'://indicates a double type
+                primitive = PrimType::FLOAT;
 
                 //even though it is a double type we designate it as a float
                 //the reason is because OpenGL doesn't provide any interface for modifying uniform values
@@ -186,6 +205,7 @@ ShaderUniform::ShaderUniform(std::string& type)
                 }
                 break;
             case 'i'://integer version of vector
+                primitive = PrimType::INT;
                 switch(type.back()){
                     case '2':
                         uniformType = Type::VEC2;
@@ -199,6 +219,7 @@ ShaderUniform::ShaderUniform(std::string& type)
                 }
                 break;
             case 'u'://unsigned integer version of vector
+                primitive = PrimType::UINT;
                 switch(type.back()){
                     case '2':
                         uniformType = Type::VEC2;
@@ -212,6 +233,7 @@ ShaderUniform::ShaderUniform(std::string& type)
                 }
                 break;
             case 'b'://boolean version of vector
+                primitive = PrimType::INT;
                 switch(type.back()){
                     case '2':
                         uniformType = Type::VEC2;
