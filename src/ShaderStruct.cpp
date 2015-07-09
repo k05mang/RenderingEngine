@@ -3,7 +3,7 @@
 /*
     std::vector<std::string> fields;
 */
-ShaderStruct::ShaderStruct(std::string& file)
+ShaderStruct::ShaderStruct(std::string& structure, std::unordered_map<std::string, ShaderStruct>& knownStructs)
 {
 
 }

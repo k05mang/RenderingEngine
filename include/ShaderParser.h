@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <regex>
 
 class ShaderParser
 {
@@ -36,6 +37,8 @@ public:
 	/*
 		Gets the length of the array for the source code stored by this class
 	*/
-	int getLength();
+	int getSrcLength();
+
+	static std::vector<std::string> split(std::string target, std::regex& splitter);
 };
 

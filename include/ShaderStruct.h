@@ -2,13 +2,14 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 class ShaderStruct
 {
     private:
         std::vector<std::string> fields;
     public:
-        ShaderStruct(std::string& file);
+        ShaderStruct(std::string& structure, std::unordered_map<std::string, ShaderStruct>& knownStructs);
         ~ShaderStruct();
 
         ShaderStruct(const ShaderStruct&) = delete;
