@@ -1,11 +1,19 @@
 #pragma once
 #include <vector>
-#include "HalfEdge.h"
 
 class Face
 {
 private:
-	HalfEdge e1, e2, e3;//edges of this face
+	class HalfEdge
+	{
+	public:
+		int emitVert;
+		Face *parent, *adj;
+		HalfEdge *next, *opposite;
+
+		HalfEdge(int eVert);
+		~HalfEdge();
+	}e1, e2, e3;//edges of this face
 public:
 	Face(int v1, int v2, int v3);
 	~Face();

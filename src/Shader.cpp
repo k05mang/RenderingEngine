@@ -3,7 +3,7 @@
 /*
     GLuint shaderId;
 	GLenum type;
-	ShaderParser parser;
+	parser parser;
 	std::string filename;
 */
 Shader::Shader(std::string fileName, GLenum shaderType) : parser(fileName), type(shaderType), filename(fileName)
@@ -18,7 +18,7 @@ Shader::~Shader()
 }
 
 Shader::Shader(Shader&& moveTarget) : shaderId(std::move(moveTarget.shaderId)), type(std::move(moveTarget.type)),
-                                      shaderParser(std::move(moveTarget.shaderParser)), filename(std::move(moveTarget.filename))
+                                      parser(std::move(moveTarget.parser)), filename(std::move(moveTarget.filename))
 {
 
 }
@@ -27,7 +27,7 @@ Shader& Shader::operator=(Shader&& moveTarget)
 {
     shaderId = std::move(moveTarget.shaderId);
     type = std::move(moveTarget.type);
-    shaderParser = std::move(moveTarget.shaderParser);
+    parser = std::move(moveTarget.parser);
     filename = std::move(moveTarget.filename);
 
     return *this;
@@ -69,5 +69,5 @@ std::string Shader::getErrorLog()
 
 std::vector<std::string>& Shader::getUniforms()
 {
-    return uniforms;
+    return parser.getUniforms();
 }

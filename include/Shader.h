@@ -2,6 +2,7 @@
 
 #include "ShaderParser.h"
 #include <GL/gl.h>
+#include <GL/glcorearb.h>
 #include <glm.hpp>
 
 class Shader

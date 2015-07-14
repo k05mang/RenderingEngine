@@ -1,11 +1,11 @@
-#include "HalfEdge.h"
+#include "Face.h"
 
-HalfEdge::HalfEdge(int eVert) : emitVert(eVert), parent(nullptr), adj(nullptr), next(nullptr), opposite(nullptr)
+Face::HalfEdge::HalfEdge(int eVert) : emitVert(eVert), parent(nullptr), adj(nullptr), next(nullptr), opposite(nullptr)
 {
-	
+
 }
 
 
-HalfEdge::~HalfEdge()
+Face::HalfEdge::~HalfEdge()
 {
 }
