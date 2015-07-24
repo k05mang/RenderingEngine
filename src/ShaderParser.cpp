@@ -1,23 +1,29 @@
 #include "ShaderParser.h"
+#include "ShaderStruct.h"
 #include <fstream>
 #include <iostream>
+#include <unordered_map>
+using namespace std;
 
 /*
-	std::vector<std::string> uniforms, sourceVector;
-	std::unique_ptr<char*> source;
+	vector<string> uniforms, sourceVector;
+	unique_ptr<char*> source;
 */
-ShaderParser::ShaderParser(std::string fileName) : filename(fileName), source(nullptr)
+ShaderParser::ShaderParser(string fileName) : filename(fileName), source(nullptr)
 {
-	std::ifstream shaderFile(fileName);
+	ifstream shaderFile(fileName);
 
 	if(shaderFile.is_open()){
         while(!shaderFile.eof()){
-			std::string line;
+			unordered_map<string, ShaderStruct> structures;//hashmap for storing the structures defined in the shader that could be used as uniforms
+			string line;//string storing the line of text from the file
 			getline(shaderFile, line);
 			sourceVector.push_back(line);
+
+			if()
         }
 	}else{
-		std::cout << "Failed to open file: " << fileName;
+		cout << "Failed to open file: " << fileName;
 	}
 
 	shaderFile.close();
@@ -29,18 +35,18 @@ ShaderParser::~ShaderParser()
 
 }
 
-ShaderParser::ShaderParser(ShaderParser&& moveTarget) : filename(std::move(moveTarget.filename)), uniforms(std::move(moveTarget.uniforms)),
-										  sourceVector(std::move(moveTarget.sourceVector)), source(std::move(moveTarget.source))
+ShaderParser::ShaderParser(ShaderParser&& moveTarget) : filename(move(moveTarget.filename)), uniforms(move(moveTarget.uniforms)),
+										  sourceVector(move(moveTarget.sourceVector)), source(move(moveTarget.source))
 {
 
 }
 
 ShaderParser& ShaderParser::operator= (ShaderParser&& rhs)
 {
-		filename = std::move(rhs.filename);
-		uniforms = std::move(rhs.uniforms);
-		sourceVector = std::move(rhs.sourceVector);
-		source = std::move(rhs.source);
+		filename = move(rhs.filename);
+		uniforms = move(rhs.uniforms);
+		sourceVector = move(rhs.sourceVector);
+		source = move(rhs.source);
 
 		return *this;
 }
@@ -50,7 +56,7 @@ char** ShaderParser::getSource()
 	return source.get();
 }
 
-std::vector<std::string>& ShaderParser::getUniforms()
+vector<string>& ShaderParser::getUniforms()
 {
 	return uniforms;
 }
@@ -58,19 +64,4 @@ std::vector<std::string>& ShaderParser::getUniforms()
 int ShaderParser::getSrcLength()
 {
 	return sourceVector.size();
-}
-
-std::vector<std::string> ShaderParser::split(std::string target, std::regex& splitter)
-{
-	//gotten from http://www.cplusplus.com/reference/regex/regex_token_iterator/regex_token_iterator/
-	// default constructor = end-of-sequence:
-	std::regex_token_iterator<std::string::iterator> rend;
-	std::regex_token_iterator<std::string::iterator> values ( target.begin(), target.end(), splitter, -1 );
-
-	std::vector<std::string> splitValues;
-	while (values != rend){
-		splitValues.push_back(*values++);
-	}
-
-	return splitValues;
 }

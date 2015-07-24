@@ -1,12 +1,13 @@
 #include "Shader.h"
+using namespace std;
 
 /*
     GLuint shaderId;
 	GLenum type;
 	parser parser;
-	std::string filename;
+	string filename;
 */
-Shader::Shader(std::string fileName, GLenum shaderType) : parser(fileName), type(shaderType), filename(fileName)
+Shader::Shader(string fileName, GLenum shaderType) : parser(fileName), type(shaderType), filename(fileName)
 {
 	shaderId = glCreateShader(shaderType);
 }
@@ -17,18 +18,18 @@ Shader::~Shader()
     glDeleteShader(shaderId);
 }
 
-Shader::Shader(Shader&& moveTarget) : shaderId(std::move(moveTarget.shaderId)), type(std::move(moveTarget.type)),
-                                      parser(std::move(moveTarget.parser)), filename(std::move(moveTarget.filename))
+Shader::Shader(Shader&& moveTarget) : shaderId(move(moveTarget.shaderId)), type(move(moveTarget.type)),
+                                      parser(move(moveTarget.parser)), filename(move(moveTarget.filename))
 {
 
 }
 
 Shader& Shader::operator=(Shader&& moveTarget)
 {
-    shaderId = std::move(moveTarget.shaderId);
-    type = std::move(moveTarget.type);
-    parser = std::move(moveTarget.parser);
-    filename = std::move(moveTarget.filename);
+    shaderId = move(moveTarget.shaderId);
+    type = move(moveTarget.type);
+    parser = move(moveTarget.parser);
+    filename = move(moveTarget.filename);
 
     return *this;
 }
@@ -57,17 +58,17 @@ bool Shader::compile()
     return status;
 }
 
-std::string Shader::getErrorLog()
+string Shader::getErrorLog()
 {
     GLint logLength;
     glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &logLength);
 
     GLchar* logBuffer;
     glGetShaderInfoLog(shaderId, logLength, NULL, logBuffer);
-    return std::string(logBuffer);
+    return string(logBuffer);
 }
 
-std::vector<std::string>& Shader::getUniforms()
+vector<string>& Shader::getUniforms()
 {
     return parser.getUniforms();
 }

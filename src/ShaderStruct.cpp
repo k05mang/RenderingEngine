@@ -1,9 +1,10 @@
 #include "ShaderStruct.h"
+using namespace std;
 
 /*
-    std::vector<std::string> fields;
+    vector<string> fields;
 */
-ShaderStruct::ShaderStruct(std::string& structure, std::unordered_map<std::string, ShaderStruct>& knownStructs)
+ShaderStruct::ShaderStruct(string& structure, unordered_map<string, ShaderStruct>& knownStructs)
 {
 
 }
@@ -13,23 +14,23 @@ ShaderStruct::~ShaderStruct()
 
 }
 
-ShaderStruct(ShaderStruct&& moveTarget) : name(std::move(moveTarget.name)), fields(std::move(moveTarget.fields))
+ShaderStruct(ShaderStruct&& moveTarget) : name(move(moveTarget.name)), fields(move(moveTarget.fields))
 {
 
 }
 
 ShaderStruct& operator= (ShaderStruct&& rhs)
 {
-    name(std::move(moveTarget.name);
-    fields = std::move(moveTarget.fields);
+    name(move(moveTarget.name);
+    fields = move(moveTarget.fields);
 
     return *this;
 }
 
-std::vector<std::string> genNames(std::string& base)
+vector<string> genNames(string& base)
 {
-    std::vector<std::string> names;
-    for(std::string& field : fields){
+    vector<string> names;
+    for(string& field : fields){
         names.push_back(base+field);
     }
 

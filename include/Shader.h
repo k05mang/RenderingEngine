@@ -2,8 +2,10 @@
 
 #include "ShaderParser.h"
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <GL/glcorearb.h>
 #include <glm.hpp>
+using namespace std;
 
 class Shader
 {
@@ -11,9 +13,9 @@ private:
 	GLuint shaderId;
 	GLenum type;
 	ShaderParser parser;
-	std::string filename;
+	string filename;
 public:
-	Shader(std::string fileName, GLenum shaderType);
+	Shader(string fileName, GLenum shaderType);
 	~Shader();
 	Shader(const Shader& copy) = delete;
 	Shader& operator= (const Shader& copy) = delete;
@@ -47,12 +49,12 @@ public:
 	/*
 		Retrieves the error log associated with this shader if an error occurred during the compilation process
 	*/
-	std::string getErrorLog();
+	string getErrorLog();
 
 	/*
 		Gets the list of strings that represent the uniforms parsed from the shader source code
 	*/
-	std::vector<std::string>& getUniforms();
+	vector<string>& getUniforms();
 
 };
 

@@ -3,13 +3,15 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <regex>
+using namespace std;
 
 class ShaderStruct
 {
     private:
-        std::vector<std::string> fields;
+        vector<string> fields;
     public:
-        ShaderStruct(std::string& structure, std::unordered_map<std::string, ShaderStruct>& knownStructs);
+        ShaderStruct(string& structure, unordered_map<string, ShaderStruct>& knownStructs);
         ~ShaderStruct();
 
         ShaderStruct(const ShaderStruct&) = delete;
@@ -18,5 +20,5 @@ class ShaderStruct
         ShaderStruct(ShaderStruct&& moveTarget);
         ShaderStruct& operator= (ShaderStruct&& rhs);
 
-        std::vector<std::string> genNames(std::string& base);
+        vector<string> genNames(string& base);
 };

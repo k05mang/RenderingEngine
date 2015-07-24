@@ -3,16 +3,19 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <regex>
+using namespace std;
 
 class ShaderParser
 {
 private:
-	std::string filename;
-	std::vector<std::string> uniforms, sourceVector;
-	std::unique_ptr<char*> source;
+	string filename;
+	vector<string> uniforms, sourceVector;
+	unique_ptr<char*> source;
 public:
-	ShaderParser(std::string fileName);
+	static const string shaderTypes = "int|uint|float|double|bool|(d|b|i|u)?vec(2|3|4){1}|d?mat(2|3|4){1}(x(2|3|4){1})?|(u|i)?(sampler|image)(\\d{1}D)?\\w*";//regular expression for determining a basic shader primitive type
+									//either basic primitives,or a vector type might be prefixed,or a matrix type which could be prefixed for doubles and could be followed by a dimension qualifier
+
+	ShaderParser(string fileName);
 	~ShaderParser();
 	ShaderParser(const ShaderParser&) = delete;
 	ShaderParser& operator= (const ShaderParser&) = delete;
@@ -32,13 +35,11 @@ public:
 	/*
 		Gets the vector from this parser that contains the information for the uniforms connected with this shader
 	*/
-	std::vector<std::string>& getUniforms();
+	vector<string>& getUniforms();
 
 	/*
 		Gets the length of the array for the source code stored by this class
 	*/
 	int getSrcLength();
-
-	static std::vector<std::string> split(std::string target, std::regex& splitter);
 };
 

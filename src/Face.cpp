@@ -1,4 +1,5 @@
 #include "Face.h"
+using namespace std;
 
 Face::Face(int v1, int v2, int v3) : e1(v1), e2(v2), e3(v3)
 {
@@ -15,28 +16,28 @@ Face::~Face()
 
 }
 
-Face::Face(Face&& moveTarget) : e1(std::move(moveTarget.e1)), e2(std::move(moveTarget.e2)), e3(std::move(moveTarget.e3))
+Face::Face(Face&& moveTarget) : e1(move(moveTarget.e1)), e2(move(moveTarget.e2)), e3(move(moveTarget.e3))
 {
 
 }
 
 Face& Face::operator= (Face&& moveTarget)
 {
-	e1 = std::move(moveTarget.e1);
-	e2 = std::move(moveTarget.e2);
-	e3 = std::move(moveTarget.e3);
+	e1 = move(moveTarget.e1);
+	e2 = move(moveTarget.e2);
+	e3 = move(moveTarget.e3);
 
 	return *this;
 }
 
-void Face::storePrim(std::vector<int>& storage)
+void Face::storePrim(vector<int>& storage)
 {
 	storage.push_back(e1.emitVert);
 	storage.push_back(e2.emitVert);
 	storage.push_back(e3.emitVert);
 }
 
-void Face::storePrimAdj(std::vector<int>& storage)
+void Face::storePrimAdj(vector<int>& storage)
 {
 	storage.push_back(e1.emitVert);
 	storage.push_back(e1.opposite->emitVert);
