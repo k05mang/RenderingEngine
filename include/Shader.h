@@ -1,10 +1,11 @@
 #pragma once
 
-#include "ShaderParser.h"
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <GL/glcorearb.h>
 #include <glm.hpp>
+#include <memory>
+#include <vector>
 using namespace std;
 
 class Shader
@@ -12,8 +13,8 @@ class Shader
 private:
 	GLuint shaderId;
 	GLenum type;
-	ShaderParser parser;
-	string filename;
+	unique_ptr<char**> source;
+	vector<string> sourceVector;
 public:
 	Shader(string fileName, GLenum shaderType);
 	~Shader();
@@ -50,11 +51,6 @@ public:
 		Retrieves the error log associated with this shader if an error occurred during the compilation process
 	*/
 	string getErrorLog();
-
-	/*
-		Gets the list of strings that represent the uniforms parsed from the shader source code
-	*/
-	vector<pair<string, ShaderUniform>>& getUniforms();
 
 };
 

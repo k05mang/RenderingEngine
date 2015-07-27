@@ -1,15 +1,32 @@
 #include "Shader.h"
+#include <fstream>
 using namespace std;
 
 /*
     GLuint shaderId;
 	GLenum type;
-	parser parser;
-	string filename;
 */
-Shader::Shader(string fileName, GLenum shaderType) : parser(fileName), type(shaderType), filename(fileName)
+Shader::Shader(string fileName, GLenum shaderType) : type(shaderType), source(nullptr)
 {
+    ifstream shaderFile(fileName);
+
+	if(shaderFile.is_open()){
+        while(!shaderFile.eof()){
+			string line;//string storing the line of text from the file
+			getline(shaderFile, line);
+			sourceVector.push_back(line+"\n");
+        }
+        source = unique_ptr<char**>(new char*[sourceVector.size()]);
+        for(int curLine = 0; curLine < sourceVector.size(); curLine++){
+            source[curLine] = sourceVector[curLine].data();
+        }
+	}else{
+		cout << "Failed to open file: " << fileName;
+	}
+
+	shaderFile.close();
 	shaderId = glCreateShader(shaderType);
+	glShaderSource(shaderId, sourceVector.size(), source.get(), NULL);
 }
 
 
@@ -18,8 +35,7 @@ Shader::~Shader()
     glDeleteShader(shaderId);
 }
 
-Shader::Shader(Shader&& moveTarget) : shaderId(move(moveTarget.shaderId)), type(move(moveTarget.type)),
-                                      parser(move(moveTarget.parser)), filename(move(moveTarget.filename))
+Shader::Shader(Shader&& moveTarget) : shaderId(move(moveTarget.shaderId)), type(move(moveTarget.type))
 {
 
 }
@@ -28,8 +44,6 @@ Shader& Shader::operator=(Shader&& moveTarget)
 {
     shaderId = move(moveTarget.shaderId);
     type = move(moveTarget.type);
-    parser = move(moveTarget.parser);
-    filename = move(moveTarget.filename);
 
     return *this;
 }
@@ -66,9 +80,4 @@ string Shader::getErrorLog()
     GLchar* logBuffer;
     glGetShaderInfoLog(shaderId, logLength, NULL, logBuffer);
     return string(logBuffer);
-}
-
-vector<pair<string, ShaderUniform>>& Shader::getUniforms()
-{
-    return parser.getUniforms();
 }
