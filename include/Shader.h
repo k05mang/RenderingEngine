@@ -54,7 +54,7 @@ public:
 	/*
 		Gets the list of strings that represent the uniforms parsed from the shader source code
 	*/
-	vector<string>& getUniforms();
+	vector<pair<string, ShaderUniform>>& getUniforms();
 
 };
 

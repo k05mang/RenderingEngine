@@ -68,7 +68,7 @@ string Shader::getErrorLog()
     return string(logBuffer);
 }
 
-vector<string>& Shader::getUniforms()
+vector<pair<string, ShaderUniform>>& Shader::getUniforms()
 {
     return parser.getUniforms();
 }
