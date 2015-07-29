@@ -13,8 +13,6 @@ class Shader
 private:
 	GLuint shaderId;
 	GLenum type;
-	unique_ptr<char**> source;
-	vector<string> sourceVector;
 public:
 	Shader(string fileName, GLenum shaderType);
 	~Shader();

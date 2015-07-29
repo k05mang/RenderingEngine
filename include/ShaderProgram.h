@@ -1,14 +1,13 @@
 #pragma once
 
 #include "Shader.h"
-#include "ShaderUniform.h"
-#include <glm.h>
+#include <glm.hpp>
+using namespace std;
 
 class ShaderProgram
 {
     private:
         GLuint programId;
-        std::unordered_map<std::string, ShaderUniform> uniforms;
     public:
         ShaderProgram();
         ~ShaderProgram();
@@ -20,7 +19,6 @@ class ShaderProgram
         void setUniform(float v1, float v2);
         void setUniform(float v1, float v2, float v3);
         void setUniform(float v1, float v2, float v3, float v4);
-        void setUniform(const glm::vec1& vec);
         void setUniform(const glm::vec2& vec);
         void setUniform(const glm::vec3& vec);
         void setUniform(const glm::vec4& vec);
@@ -30,8 +28,7 @@ class ShaderProgram
         void setUniform(int v1, int v2);
         void setUniform(int v1, int v2, int v3);
         void setUniform(int v1, int v2, int v3, int v4);
-        void setUniform(const glm::ivec1& vec);
-        void setUniform(const glm::ivec2)& vec;
+        void setUniform(const glm::ivec2& vec);
         void setUniform(const glm::ivec3& vec);
         void setUniform(const glm::ivec4& vec);
 
@@ -40,7 +37,6 @@ class ShaderProgram
         void setUniform(GLuint v1, GLuint v2);
         void setUniform(GLuint v1, GLuint v2, GLuint v3);
         void setUniform(GLuint v1, GLuint v2, GLuint v3, GLuint v4);
-        void setUniform(const glm::uvec1& vec);
         void setUniform(const glm::uvec2& vec);
         void setUniform(const glm::uvec3& vec);
         void setUniform(const glm::uvec4& vec);
@@ -50,7 +46,6 @@ class ShaderProgram
         void setUniform(bool v1, bool v2);
         void setUniform(bool v1, bool v2, bool v3);
         void setUniform(bool v1, bool v2, bool v3, bool v4);
-        void setUniform(const glm::bvec1& vec);
         void setUniform(const glm::bvec2& vec);
         void setUniform(const glm::bvec3& vec);
         void setUniform(const glm::bvec4& vec);
