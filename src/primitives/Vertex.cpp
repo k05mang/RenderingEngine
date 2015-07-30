@@ -1,4 +1,4 @@
-#include "Vertex.h"
+#include "primitives/Vertex.h"
 #include <geometric.hpp>
 
 Vertex::Vertex(float x, float y, float z,

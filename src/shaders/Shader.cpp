@@ -2,7 +2,7 @@
 #define GL_GLEXT_PROTOTYPES
 #endif // GL_GLEXT_PROTOTYPES
 
-#include "Shader.h"
+#include "shaders/Shader.h"
 #include <fstream>
 #include <stdlib.h>
 #include <iostream>

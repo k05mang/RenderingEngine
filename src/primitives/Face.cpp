@@ -1,4 +1,4 @@
-#include "Face.h"
+#include "primitives/Face.h"
 using namespace std;
 
 Face::Face(int v1, int v2, int v3) : e1(v1), e2(v2), e3(v3)
