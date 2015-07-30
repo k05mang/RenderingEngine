@@ -11,6 +11,13 @@ class ShaderProgram
     public:
         ShaderProgram();
         ~ShaderProgram();
+        void bind();
+        void unbind();
+        void erase();
+        void add(Shader shader);
+        bool link();
+        string getErrorLog();
+
 
         //TODO add some functions to possibly handle array uniforms
 

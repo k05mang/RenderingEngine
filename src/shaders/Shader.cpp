@@ -102,7 +102,9 @@ string Shader::getErrorLog()
     GLint logLength;
     glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &logLength);
 
-    GLchar* logBuffer;
+    GLchar* logBuffer = new GLchar[logLength];
     glGetShaderInfoLog(shaderId, logLength, NULL, logBuffer);
-    return string(logBuffer);
+    string log(logBuffer, logLength);
+    delete[] logBuffer;
+    return log;
 }

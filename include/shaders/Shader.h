@@ -3,9 +3,9 @@
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <GL/glcorearb.h>
-#include <glm.hpp>
 #include <memory>
 #include <vector>
+#include <string>
 using namespace std;
 
 class Shader
