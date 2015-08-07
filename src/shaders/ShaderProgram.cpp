@@ -4,9 +4,6 @@
 #endif // GL_GLEXT_PROTOTYPES
 
 #include "shaders/ShaderProgram.h"
-#include <GL/gl.h>
-#include <GL/glext.h>
-#include <GL/glcorearb.h>
 
 ShaderProgram::ShaderProgram()
 {
