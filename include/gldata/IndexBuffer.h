@@ -7,13 +7,10 @@ using namespace std;
 class IndexBuffer : public BufferObject
 {
     public:
-        IndexBuffer(vector<byte>);
         IndexBuffer(vector<unsigned byte>);
-        IndexBuffer(vector<short>);
         IndexBuffer(vector<unsigned short>);
-        IndexBuffer(vector<int>);
+        IndexBuffer(vector<unsigned int>);
 
-        void reset(vector<unsigned int>);
         ~IndexBuffer();
 
         IndexBuffer(const IndexBuffer&) = delete;
@@ -24,12 +21,12 @@ class IndexBuffer : public BufferObject
         void bind();
         void unbind();
 
-        void reset(vector<byte> data, GLenum usage);
         void reset(vector<unsigned byte> data, GLenum usage);
-        void reset(vector<short> data, GLenum usage);
         void reset(vector<unsigned short> data, GLenum usage);
-        void reset(vector<int> data, GLenum usage);
         void reset(vector<unsigned int> data, GLenum usage);
 
         //add the setting data with offset feature
+        void set(vector<unsigned byte> data, int offset);
+        void set(vector<unsigned short> data, int offset);
+        void set(vector<unsigned int> data, int offset);
 };
