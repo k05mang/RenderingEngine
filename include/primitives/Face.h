@@ -26,12 +26,12 @@ public:
 	/*
 		Stores the indices of this face that represent just the triangle primitive
 	*/
-	void storePrim(vector<int>& storage);
+	void storePrim(vector<int>& buffer);
 
 	/*
 		Stores the indices of this face that represent this triangle and it's adjacent faces
 		in a manner complient with OpenGL TRIANGLE_ADJACENCY
 	*/
-	void storePrimAdj(vector<int>& storage);
+	void storePrimAdj(vector<int>& buffer);
 };
 

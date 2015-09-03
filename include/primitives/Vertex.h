@@ -60,5 +60,7 @@ public:
 	*/
 	void setUV(float u, float v);
 
-	void store(std::vector<float>& storage);
+	void store(std::vector<float>& buffer);
+
+	void store(std::vector<char>& buffer);
 };

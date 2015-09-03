@@ -90,16 +90,31 @@ void Vertex::setUV(float u, float v)
 	uv = glm::vec2(u, v);
 }
 
-void Vertex::store(std::vector<float>& storage)
+void Vertex::store(std::vector<float>& buffer)
 {
-	storage.push_back(pos.x);
-	storage.push_back(pos.y);
-	storage.push_back(pos.z);
+	buffer.push_back(pos.x);
+	buffer.push_back(pos.y);
+	buffer.push_back(pos.z);
 
-	storage.push_back(normal.x);
-	storage.push_back(normal.y);
-	storage.push_back(normal.z);
+	buffer.push_back(normal.x);
+	buffer.push_back(normal.y);
+	buffer.push_back(normal.z);
 
-	storage.push_back(uv.x);
-	storage.push_back(uv.y);
+	buffer.push_back(uv.x);
+	buffer.push_back(uv.y);
+}
+
+//TODO change this to byte uploading
+void Vertex::store(std::vector<char>& buffer)
+{
+	buffer.push_back(pos.x);
+	buffer.push_back(pos.y);
+	buffer.push_back(pos.z);
+
+	buffer.push_back(normal.x);
+	buffer.push_back(normal.y);
+	buffer.push_back(normal.z);
+
+	buffer.push_back(uv.x);
+	buffer.push_back(uv.y);
 }

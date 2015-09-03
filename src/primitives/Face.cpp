@@ -30,21 +30,21 @@ Face& Face::operator= (Face&& moveTarget)
 	return *this;
 }
 
-void Face::storePrim(vector<int>& storage)
+void Face::storePrim(vector<int>& buffer)
 {
-	storage.push_back(e1.emitVert);
-	storage.push_back(e2.emitVert);
-	storage.push_back(e3.emitVert);
+	buffer.push_back(e1.emitVert);
+	buffer.push_back(e2.emitVert);
+	buffer.push_back(e3.emitVert);
 }
 
-void Face::storePrimAdj(vector<int>& storage)
+void Face::storePrimAdj(vector<int>& buffer)
 {
-	storage.push_back(e1.emitVert);
-	storage.push_back(e1.opposite->emitVert);
+	buffer.push_back(e1.emitVert);
+	buffer.push_back(e1.opposite->emitVert);
 
-	storage.push_back(e2.emitVert);
-	storage.push_back(e2.opposite->emitVert);
+	buffer.push_back(e2.emitVert);
+	buffer.push_back(e2.opposite->emitVert);
 
-	storage.push_back(e3.emitVert);
-	storage.push_back(e3.opposite->emitVert);
+	buffer.push_back(e3.emitVert);
+	buffer.push_back(e3.opposite->emitVert);
 }

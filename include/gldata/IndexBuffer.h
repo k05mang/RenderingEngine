@@ -1,5 +1,5 @@
 #pragma once
-#include "BufferObject.h"
+#include "gldata/BufferObject.h"
 #include <vector>
 
 using namespace std;
@@ -7,9 +7,7 @@ using namespace std;
 class IndexBuffer : public BufferObject
 {
     public:
-        IndexBuffer(vector<unsigned char>& data);
-        IndexBuffer(vector<unsigned short>& data);
-        IndexBuffer(vector<unsigned int>& data);
+        IndexBuffer();
 
         ~IndexBuffer();
 
@@ -20,13 +18,4 @@ class IndexBuffer : public BufferObject
 
         void bind();
         void unbind();
-
-        void reset(vector<unsigned char>& data, GLenum usage);
-        void reset(vector<unsigned short>& data, GLenum usage);
-        void reset(vector<unsigned int>& data, GLenum usage);
-
-        //add the setting data with offset feature
-        void set(vector<unsigned char>& data, int offset);
-        void set(vector<unsigned short>& data, int offset);
-        void set(vector<unsigned int>& data, int offset);
 };
