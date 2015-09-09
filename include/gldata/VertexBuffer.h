@@ -1,5 +1,6 @@
 #pragma once
 #include "gldata/BufferObject.h"
+#include "primitives/Vertex.h"
 #include <vector>
 #include <glm.hpp>
 
@@ -26,8 +27,8 @@ class VertexBuffer : public BufferObject
         //this objects storage buffer gets transferred over to the GPU as a vertex buffer storage
 
         //primitive types
-        void add(float value);
-        void add(double value);
+        inline void add(float value);
+        inline void add(double value);
 
         //different vector types
         void add(glm::vec2& value);

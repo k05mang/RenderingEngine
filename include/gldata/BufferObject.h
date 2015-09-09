@@ -22,16 +22,16 @@ class BufferObject
         int size();
         virtual void bind() = 0;
         virtual void unbind() = 0;
-        void flush();
+        void flush(GLenum usage);
         void erase();
 
         //primitive types
-        void add(int value);
-        void add(char value);
-        void add(short value);
-        void add(unsigned int value);
-        void add(unsigned char value);
-        void add(unsigned short value);
+        inline void add(char value);
+        inline void add(short value);
+        inline void add(int value);
+        inline void add(unsigned char value);
+        inline void add(unsigned short value);
+        inline void add(unsigned int value);
 
         //different vector types
         void add(glm::uvec2& value);
