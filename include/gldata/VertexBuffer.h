@@ -13,7 +13,6 @@ class VertexBuffer : public BufferObject
     //boolean, opaque, and structs are forbidden with attributes
     public:
         VertexBuffer();
-        ~VertexBuffer();
 
         VertexBuffer(const VertexBuffer&) = delete;
         VertexBuffer& operator=(const VertexBuffer&) = delete;

@@ -9,8 +9,6 @@ class IndexBuffer : public BufferObject
     public:
         IndexBuffer();
 
-        ~IndexBuffer();
-
         IndexBuffer(const IndexBuffer&) = delete;
         IndexBuffer& operator=(const IndexBuffer&) = delete;
         IndexBuffer(IndexBuffer&&) = delete;

@@ -107,14 +107,21 @@ void Vertex::store(std::vector<float>& buffer)
 //TODO change this to byte uploading
 void Vertex::store(std::vector<char>& buffer)
 {
-	buffer.push_back(pos.x);
-	buffer.push_back(pos.y);
-	buffer.push_back(pos.z);
+	auto add = [&buffer](float target){
+		buffer.push_back(target & 0xff);
+		buffer.push_back((target >> 8) & 0xff);
+		buffer.push_back((target >> 16) & 0xff);
+		buffer.push_back((target >> 24) & 0xff);
+	};
 
-	buffer.push_back(normal.x);
-	buffer.push_back(normal.y);
-	buffer.push_back(normal.z);
+	add(pos.x);
+	add(pos.y);
+	add(pos.z);
 
-	buffer.push_back(uv.x);
-	buffer.push_back(uv.y);
+	add(normal.x);
+	add(normal.y);
+	add(normal.z);
+
+	add(uv.x);
+	add(uv.y);
 }

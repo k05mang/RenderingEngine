@@ -10,7 +10,8 @@ BufferObject::BufferObject() : size(0)
 
 BufferObject::~BufferObject()
 {
-    //dtor
+    GLuint buffer[]{bufferId};
+    glDeleteBuffers(1, buffer);
 }
 
 void BufferObject::erase()
@@ -86,6 +87,9 @@ void BufferObject::add(glm::ivec4& value){
 
 void flush(GLenum usage){
     glNamedBufferData(bufferId, data.size(), data.data(), usage);
+    //clear the data store since it has been buffered onto the GPU
+    data.clear();
+    data.shrink_to_fit();
 }
 
 //sets the value of the vertex buffer data store that is on the GPU

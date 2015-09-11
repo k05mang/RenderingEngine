@@ -6,11 +6,6 @@ VertexBuffer::VertexBuffer()
     //ctor
 }
 
-VertexBuffer::~VertexBuffer()
-{
-    //dtor
-}
-
 void VertexBuffer::bind(){
     glBindBuffer(GL_ARRAY_BUFFER, bufferId);
 }
