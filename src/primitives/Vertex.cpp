@@ -105,13 +105,15 @@ void Vertex::store(std::vector<float>& buffer)
 }
 
 //TODO change this to byte uploading
-void Vertex::store(std::vector<char>& buffer)
+void Vertex::store(std::vector<unsigned char>& buffer)
 {
 	auto add = [&buffer](float target){
-		buffer.push_back(target & 0xff);
-		buffer.push_back((target >> 8) & 0xff);
-		buffer.push_back((target >> 16) & 0xff);
-		buffer.push_back((target >> 24) & 0xff);
+
+	    unsigned char const * bytes = reinterpret_cast<unsigned char const *>(&target);
+	    buffer.push_back(bytes[0]);
+	    buffer.push_back(bytes[1]);
+	    buffer.push_back(bytes[2]);
+	    buffer.push_back(bytes[3]);
 	};
 
 	add(pos.x);

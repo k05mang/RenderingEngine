@@ -62,5 +62,5 @@ public:
 
 	void store(std::vector<float>& buffer);
 
-	void store(std::vector<char>& buffer);
+	void store(std::vector<unsigned char>& buffer);
 };

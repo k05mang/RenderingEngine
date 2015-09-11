@@ -4,8 +4,8 @@
 #include <GL/glext.h>
 #include <GL/glcorearb.h>
 #include <vector>
-#include "VertexBuffer.h"
-#include "IndexBuffer.h""
+#include "BufferObject.h"
+#include <glm.hpp>
 
 using namespace std;
 class VertexArray
@@ -28,8 +28,7 @@ class VertexArray
 
                 ~VertexAttrib() = default;
         };
-        VertexBuffer buffer;
-        IndexBuffer indices;
+        BufferObject buffer, indices;
         char vertStride;
         vector<VertexAttrib> attributes;
         enum AttribType{
