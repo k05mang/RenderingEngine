@@ -11,7 +11,6 @@ using namespace std;
 class VertexArray
 {
     private:
-        GLuint vaoId;
         class VertexAttrib
         {
             public:
@@ -28,6 +27,7 @@ class VertexArray
 
                 ~VertexAttrib() = default;
         };
+        GLuint vaoId;
         BufferObject buffer, indices;
         char vertStride;
         vector<VertexAttrib> attributes;
@@ -74,6 +74,11 @@ class VertexArray
         //such as dynamic draw vs static draw
         VertexArray();
         ~VertexArray();
+
+        VertexArray(const VertexArray&) = delete;
+        VertexArray& operator=(const VertexArray&) = delete;
+        VertexArray(VertexArray&&) = delete;
+        VertexArray& operator=(VertexArray&&) = delete;
 
         void finalize();
         void erase();
