@@ -18,7 +18,75 @@ VertexArray::~VertexArray()
 
 void finalize();
 void VertexArray::erase();
-void VertexArray::addAttrib(AttribType type, bool normalize, int divisor);
+void VertexArray::addAttrib(AttribType type, bool normalize, int divisor){
+        switch(type){
+                case AttribType::FLOAT:
+                        break;
+                case AttribType::DOUBLE:
+                        break;
+                case AttribType::BYTE:
+                        break;
+                case AttribType::UBYTE:
+                        break;
+                case AttribType::SHORT:
+                        break;
+                case AttribType::USHORT:
+                        break;
+                case AttribType::INT:
+                        break;
+                case AttribType::UINT:
+                        break;
+
+                case AttribType::VEC2:
+                        break;
+                case AttribType::VEC3:
+                        break;
+                case AttribType::VEC4:
+                        break;
+
+                case AttribType::DVEC2:
+                        break;
+                case AttribType::DVEC3:
+                        break;
+                case AttribType::DVEC4:
+                        break;
+
+                case AttribType::UVEC2:
+                        break;
+                case AttribType::UVEC3:
+                        break;
+                case AttribType::UVEC4:
+                        break;
+
+                case AttribType::IVEC2:
+                        break;
+                case AttribType::IVEC3:
+                        break;
+                case AttribType::IVEC4:
+                        break;
+
+                case AttribType::MAT2:
+                        break;
+                case AttribType::MAT2x3:
+                        break;
+                case AttribType::MAT2x4:
+                        break;
+
+                case AttribType::MAT3:
+                        break;
+                case AttribType::MAT3x2:
+                        break;
+                case AttribType::MAT3x4:
+                        break;
+
+                case AttribType::MAT4:
+                        break;
+                case AttribType::MAT4x2:
+                        break;
+                case AttribType::MAT4x3:
+                        break;
+        }
+}
 
 inline void VertexArray::add(float value){buffer.add(value);}
 inline void VertexArray::add(double value){buffer.add(value);}
@@ -74,63 +142,68 @@ inline void VertexArray::add(dmat4x3& value){buffer.add(value);}
 
 inline void VertexArray::add(Vertex& value){buffer.add(value);}
 
-inline void VertexArray::addIndex(int value){indices.add(value);}
-inline void VertexArray::addIndex(char value){indices.add(value);}
-inline void VertexArray::addIndex(short value){indices.add(value);}
 inline void VertexArray::addIndex(unsigned int value){indices.add(value);}
-inline void VertexArray::addIndex(unsigned char value){indices.add(value);}
-inline void VertexArray::addIndex(unsigned short value){indices.add(value);}
 
-void VertexArray::setAttribute(int attribute, vector<float>& data);
-void VertexArray::setAttribute(int attribute, vector<double>& data);
-void VertexArray::setAttribute(int attribute, vector<int>& data);
-void VertexArray::setAttribute(int attribute, vector<char>& data);
-void VertexArray::setAttribute(int attribute, vector<short>& data);
-void VertexArray::setAttribute(int attribute, vector<unsigned int>& data);
-void VertexArray::setAttribute(int attribute, vector<unsigned char>& data);
-void VertexArray::setAttribute(int attribute, vector<unsigned short>& data);
+bool VertexArray::setAttribute(int attribute, vector<float>& data){
+      if(attribute >= attributes.length()){
+            cerr << "Requested attribute out of bounds for vertex array attributes" << endl;
+            return false;
+      }else{
+
+      }
+}
+bool VertexArray::setAttribute(int attribute, vector<double>& data);
+bool VertexArray::setAttribute(int attribute, vector<int>& data);
+bool VertexArray::setAttribute(int attribute, vector<char>& data);
+bool VertexArray::setAttribute(int attribute, vector<short>& data);
+bool VertexArray::setAttribute(int attribute, vector<unsigned int>& data);
+bool VertexArray::setAttribute(int attribute, vector<unsigned char>& data);
+bool VertexArray::setAttribute(int attribute, vector<unsigned short>& data);
 
 //vectors
-void VertexArray::setAttribute(int attribute, vector<vec2>& data);
-void VertexArray::setAttribute(int attribute, vector<vec3>& data);
-void VertexArray::setAttribute(int attribute, vector<vec4>& data);
+bool VertexArray::setAttribute(int attribute, vector<vec2>& data);
+bool VertexArray::setAttribute(int attribute, vector<vec3>& data);
+bool VertexArray::setAttribute(int attribute, vector<vec4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<dvec2>& data);
-void VertexArray::setAttribute(int attribute, vector<dvec3>& data);
-void VertexArray::setAttribute(int attribute, vector<dvec4>& data);
+bool VertexArray::setAttribute(int attribute, vector<dvec2>& data);
+bool VertexArray::setAttribute(int attribute, vector<dvec3>& data);
+bool VertexArray::setAttribute(int attribute, vector<dvec4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<uvec2>& data);
-void VertexArray::setAttribute(int attribute, vector<uvec3>& data);
-void VertexArray::setAttribute(int attribute, vector<uvec4>& data);
+bool VertexArray::setAttribute(int attribute, vector<uvec2>& data);
+bool VertexArray::setAttribute(int attribute, vector<uvec3>& data);
+bool VertexArray::setAttribute(int attribute, vector<uvec4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<ivec2>& data);
-void VertexArray::setAttribute(int attribute, vector<ivec3>& data);
-void VertexArray::setAttribute(int attribute, vector<ivec4>& data);
+bool VertexArray::setAttribute(int attribute, vector<ivec2>& data);
+bool VertexArray::setAttribute(int attribute, vector<ivec3>& data);
+bool VertexArray::setAttribute(int attribute, vector<ivec4>& data);
 
 //matrices
-void VertexArray::setAttribute(int attribute, vector<mat2>& data);
-void VertexArray::setAttribute(int attribute, vector<mat2x3>& data);
-void VertexArray::setAttribute(int attribute, vector<mat2x4>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat2>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat2x3>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat2x4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<mat3>& data);
-void VertexArray::setAttribute(int attribute, vector<mat3x2>& data);
-void VertexArray::setAttribute(int attribute, vector<mat3x4>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat3>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat3x2>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat3x4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<mat4>& data);
-void VertexArray::setAttribute(int attribute, vector<mat4x2>& data);
-void VertexArray::setAttribute(int attribute, vector<mat4x3>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat4>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat4x2>& data);
+bool VertexArray::setAttribute(int attribute, vector<mat4x3>& data);
 
 //double matrices
-void VertexArray::setAttribute(int attribute, vector<dmat2>& data);
-void VertexArray::setAttribute(int attribute, vector<dmat2x3>& data);
-void VertexArray::setAttribute(int attribute, vector<dmat2x4>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat2>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat2x3>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat2x4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<dmat3>& data);
-void VertexArray::setAttribute(int attribute, vector<dmat3x2>& data);
-void VertexArray::setAttribute(int attribute, vector<dmat3x4>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat3>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat3x2>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat3x4>& data);
 
-void VertexArray::setAttribute(int attribute, vector<dmat4>& data);
-void VertexArray::setAttribute(int attribute, vector<dmat4x2>& data);
-void VertexArray::setAttribute(int attribute, vector<dmat4x3>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat4>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat4x2>& data);
+bool VertexArray::setAttribute(int attribute, vector<dmat4x3>& data);
 
-void VertexArray::setAttribute(int attribute, vector<Vertex>& data);
+bool VertexArray::setAttribute(int attribute, vector<Vertex>& data);
+
+bool setindex(int index, unsigned int value);
+bool setIndices(int indexOffset, vector<unsigned int>& data);

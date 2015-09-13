@@ -14,12 +14,12 @@ class VertexArray
         class VertexAttrib
         {
             public:
-                int size;
+                int size;//number of values for the attribute, value is 1-4
                 GLenum type;
                 bool normalize;
-                int stride;
-                int offset;
-                int divisor;
+                int stride;//stride of the entire vertex
+                int offset;//offset into the vertex for this attribute
+                int divisor;//attribute divisor
 
                 VertexAttrib(int size, GLenum type, bool normalize, int stride, int offset, int divisor) :
                 size(size), type(type), normalize(normalize), stride(stride), offset(offset), divisor(divisor)
@@ -138,64 +138,62 @@ class VertexArray
 
         inline void add(Vertex& value);
 
-        inline void addIndex(int value);
-        inline void addIndex(char value);
-        inline void addIndex(short value);
         inline void addIndex(unsigned int value);
-        inline void addIndex(unsigned char value);
-        inline void addIndex(unsigned short value);
 
-        void setAttribute(int attribute, vector<float>& data);
-        void setAttribute(int attribute, vector<double>& data);
-        void setAttribute(int attribute, vector<int>& data);
-        void setAttribute(int attribute, vector<char>& data);
-        void setAttribute(int attribute, vector<short>& data);
-        void setAttribute(int attribute, vector<unsigned int>& data);
-        void setAttribute(int attribute, vector<unsigned char>& data);
-        void setAttribute(int attribute, vector<unsigned short>& data);
+        bool setAttribute(int attribute, vector<float>& data);
+        bool setAttribute(int attribute, vector<double>& data);
+        bool setAttribute(int attribute, vector<int>& data);
+        bool setAttribute(int attribute, vector<char>& data);
+        bool setAttribute(int attribute, vector<short>& data);
+        bool setAttribute(int attribute, vector<unsigned int>& data);
+        bool setAttribute(int attribute, vector<unsigned char>& data);
+        bool setAttribute(int attribute, vector<unsigned short>& data);
 
         //vectors
-        void setAttribute(int attribute, vector<vec2>& data);
-        void setAttribute(int attribute, vector<vec3>& data);
-        void setAttribute(int attribute, vector<vec4>& data);
+        bool setAttribute(int attribute, vector<vec2>& data);
+        bool setAttribute(int attribute, vector<vec3>& data);
+        bool setAttribute(int attribute, vector<vec4>& data);
 
-        void setAttribute(int attribute, vector<dvec2>& data);
-        void setAttribute(int attribute, vector<dvec3>& data);
-        void setAttribute(int attribute, vector<dvec4>& data);
+        bool setAttribute(int attribute, vector<dvec2>& data);
+        bool setAttribute(int attribute, vector<dvec3>& data);
+        bool setAttribute(int attribute, vector<dvec4>& data);
 
-        void setAttribute(int attribute, vector<uvec2>& data);
-        void setAttribute(int attribute, vector<uvec3>& data);
-        void setAttribute(int attribute, vector<uvec4>& data);
+        bool setAttribute(int attribute, vector<uvec2>& data);
+        bool setAttribute(int attribute, vector<uvec3>& data);
+        bool setAttribute(int attribute, vector<uvec4>& data);
 
-        void setAttribute(int attribute, vector<ivec2>& data);
-        void setAttribute(int attribute, vector<ivec3>& data);
-        void setAttribute(int attribute, vector<ivec4>& data);
+        bool setAttribute(int attribute, vector<ivec2>& data);
+        bool setAttribute(int attribute, vector<ivec3>& data);
+        bool setAttribute(int attribute, vector<ivec4>& data);
 
         //matrices
-        void setAttribute(int attribute, vector<mat2>& data);
-        void setAttribute(int attribute, vector<mat2x3>& data);
-        void setAttribute(int attribute, vector<mat2x4>& data);
+        bool setAttribute(int attribute, vector<mat2>& data);
+        bool setAttribute(int attribute, vector<mat2x3>& data);
+        bool setAttribute(int attribute, vector<mat2x4>& data);
 
-        void setAttribute(int attribute, vector<mat3>& data);
-        void setAttribute(int attribute, vector<mat3x2>& data);
-        void setAttribute(int attribute, vector<mat3x4>& data);
+        bool setAttribute(int attribute, vector<mat3>& data);
+        bool setAttribute(int attribute, vector<mat3x2>& data);
+        bool setAttribute(int attribute, vector<mat3x4>& data);
 
-        void setAttribute(int attribute, vector<mat4>& data);
-        void setAttribute(int attribute, vector<mat4x2>& data);
-        void setAttribute(int attribute, vector<mat4x3>& data);
+        bool setAttribute(int attribute, vector<mat4>& data);
+        bool setAttribute(int attribute, vector<mat4x2>& data);
+        bool setAttribute(int attribute, vector<mat4x3>& data);
 
         //double matrices
-        void setAttribute(int attribute, vector<dmat2>& data);
-        void setAttribute(int attribute, vector<dmat2x3>& data);
-        void setAttribute(int attribute, vector<dmat2x4>& data);
+        bool setAttribute(int attribute, vector<dmat2>& data);
+        bool setAttribute(int attribute, vector<dmat2x3>& data);
+        bool setAttribute(int attribute, vector<dmat2x4>& data);
 
-        void setAttribute(int attribute, vector<dmat3>& data);
-        void setAttribute(int attribute, vector<dmat3x2>& data);
-        void setAttribute(int attribute, vector<dmat3x4>& data);
+        bool setAttribute(int attribute, vector<dmat3>& data);
+        bool setAttribute(int attribute, vector<dmat3x2>& data);
+        bool setAttribute(int attribute, vector<dmat3x4>& data);
 
-        void setAttribute(int attribute, vector<dmat4>& data);
-        void setAttribute(int attribute, vector<dmat4x2>& data);
-        void setAttribute(int attribute, vector<dmat4x3>& data);
+        bool setAttribute(int attribute, vector<dmat4>& data);
+        bool setAttribute(int attribute, vector<dmat4x2>& data);
+        bool setAttribute(int attribute, vector<dmat4x3>& data);
 
-        void setAttribute(int attribute, vector<Vertex>& data);
+        bool setAttribute(int attribute, vector<Vertex>& data);
+
+        bool setindex(int index, unsigned int value);
+        bool setIndices(int indexOffset, vector<unsigned int>& data);
 };
