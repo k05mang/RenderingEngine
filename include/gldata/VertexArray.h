@@ -6,6 +6,7 @@
 #include <vector>
 #include "BufferObject.h"
 #include <glm.hpp>
+#include <memory>
 
 using namespace std;
 class VertexArray
@@ -26,10 +27,10 @@ class VertexArray
 
                 ~VertexAttrib() = default;
         };
-        GLuint vaoId;
+        shared_ptr<GLuint> vaoId;
         BufferObject buffer, indices;
         char vertStride;
-        vector<VertexAttrib> attributes;
+        shared_ptr<vector<VertexAttrib>> attributes;
 
     public:
           enum AttribType{
@@ -75,8 +76,10 @@ class VertexArray
         VertexArray();
         ~VertexArray();
 
-        VertexArray(const VertexArray&);
-        VertexArray& operator=(const VertexArray&);
+        VertexArray(const VertexArray& copyTarget);
+        VertexArray& operator=(const VertexArray& rhs);
+        VertexArray(VertexArray&&) = delete;
+        VertexArray& operator=(VertexArray&&) = delete;
 
         void finalize();
         void erase();

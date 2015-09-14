@@ -6,19 +6,20 @@
 #include <vector>
 #include <glm.hpp>
 #include "primitives/Vertex.h"
+#include <memory>
  using namespace std;
 class BufferObject
 {
     private:
-        GLuint bufferId;
+        shared_ptr<GLuint> bufferId;
         unsigned int numBytes;
         vector<unsigned char> data;
         GLenum type;
     public:
         BufferObject(GLenum type);
-        virtual ~BufferObject();
-        BufferObject(const BufferObject&) = delete;
-        BufferObject& operator=(const BufferObject&) = delete;
+        ~BufferObject();
+        BufferObject(const BufferObject& copyTarget);
+        BufferObject& operator=(const BufferObject& rhs);
         BufferObject(BufferObject&&) = delete;
         BufferObject& operator=(BufferObject&&) = delete;
 

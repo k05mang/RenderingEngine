@@ -1,21 +1,37 @@
 #include "gldata/BufferObject.h"
 #include <gtc/type_ptr.hpp>
 
+/*
+      shared_ptr<GLuint> bufferId;
+      unsigned int numBytes;
+      vector<unsigned char> data;
+      GLenum type;
+*/
 BufferObject::BufferObject(GLenum type) : numBytes(0), type(type)
 {
     GLuint buffer[1];
     glGenBuffers(1, buffer);
-    bufferId = buffer[0];
+    bufferId(new GLuint(buffer[0]));
 }
 
 BufferObject::~BufferObject()
 {
-    GLuint buffer[]{bufferId};
-    glDeleteBuffers(1, buffer);
+      if(bufferId.unique()){
+            GLuint buffer[]{*bufferId};
+            glDeleteBuffers(1, buffer);
+      }
+}
+
+BufferObject(const BufferObject& copyTarget) : bufferId(copyTarget.bufferId), numBytes(copyTarget.numBytes), type(copyTarget.type){
+
+}
+
+BufferObject& operator=(const BufferObject& rhs) : bufferId(rhs.bufferId), numBytes(rhs.numBytes), type(rhs.type){
+      return *this;
 }
 
 void BufferObject::bind(){
-    glBindBuffer(type, bufferId);
+    glBindBuffer(type, *bufferId);
 }
 
 void BufferObject::unbind(){
@@ -24,7 +40,7 @@ void BufferObject::unbind(){
 
 void BufferObject::erase()
 {
-    GLuint buffer[] {bufferId};
+    GLuint buffer[] {*bufferId};
     glDeleteBuffers(1, buffer);
 }
 
@@ -266,7 +282,7 @@ void BufferObject::add(Vertex& value){
 }
 
 void flush(GLenum usage){
-    glNamedBufferData(bufferId, data.size(), data.data(), usage);
+    glNamedBufferData(*bufferId, data.size(), data.data(), usage);
     //clear the data store since it has been buffered onto the GPU
     data.clear();
     data.shrink_to_fit();
