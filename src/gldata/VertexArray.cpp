@@ -16,74 +16,167 @@ VertexArray::~VertexArray()
     //dtor
 }
 
+VertexArray(const VertexArray&){
+
+}
+
+VertexArray& operator=(const VertexArray&){
+
+}
+
 void finalize();
 void VertexArray::erase();
 void VertexArray::addAttrib(AttribType type, bool normalize, int divisor){
         switch(type){
                 case AttribType::FLOAT:
+                        attributes.push_back(VertexAttrib(1, GL_FLOAT, normalize, attributes.back().offset+4, divisor));
+                        vertStride += 4;
                         break;
                 case AttribType::DOUBLE:
+                        attributes.push_back(VertexAttrib(1, GL_DOUBLE, normalize, attributes.back().offset+8, divisor));
+                        vertStride += 8;
                         break;
                 case AttribType::BYTE:
+                        attributes.push_back(VertexAttrib(1, GL_BYTE, normalize, attributes.back().offset+1, divisor));
+                        vertStride++;
                         break;
                 case AttribType::UBYTE:
+                        attributes.push_back(VertexAttrib(1, GL_UNSIGNED_BYTE, normalize, attributes.back().offset+1, divisor));
+                        vertStride++;
                         break;
                 case AttribType::SHORT:
+                        attributes.push_back(VertexAttrib(1, GL_SHORT, normalize, attributes.back().offset+2, divisor));
+                        vertStride += 2;
                         break;
                 case AttribType::USHORT:
+                        attributes.push_back(VertexAttrib(1, GL_UNSIGNED_SHORT, normalize, attributes.back().offset+2, divisor));
+                        vertStride += 2;
                         break;
                 case AttribType::INT:
+                        attributes.push_back(VertexAttrib(1, GL_INT, normalize, attributes.back().offset+4, divisor));
+                        vertStride += 4;
                         break;
                 case AttribType::UINT:
+                        attributes.push_back(VertexAttrib(1, GL_UNSIGNED_INT, normalize, attributes.back().offset+4, divisor));
+                        vertStride += 4;
                         break;
 
                 case AttribType::VEC2:
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, attributes.back().offset+8, divisor));
+                        vertStride += 8;
                         break;
                 case AttribType::VEC3:
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, attributes.back().offset+12, divisor));
+                        vertStride += 12;
                         break;
                 case AttribType::VEC4:
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, attributes.back().offset+16, divisor));
+                        vertStride += 16;
                         break;
 
                 case AttribType::DVEC2:
+                        attributes.push_back(VertexAttrib(2, GL_DOUBLE, normalize, attributes.back().offset+16, divisor));
+                        vertStride += 16;
                         break;
                 case AttribType::DVEC3:
+                        attributes.push_back(VertexAttrib(3, GL_DOUBLE, normalize, attributes.back().offset+24, divisor));
+                        vertStride += 24;
                         break;
                 case AttribType::DVEC4:
+                        attributes.push_back(VertexAttrib(4, GL_DOUBLE, normalize, attributes.back().offset+32, divisor));
+                        vertStride += 32;
                         break;
 
                 case AttribType::UVEC2:
+                        attributes.push_back(VertexAttrib(2, GL_UNSIGNED_INT, normalize, attributes.back().offset+8, divisor));
+                        vertStride += 8;
                         break;
                 case AttribType::UVEC3:
+                        attributes.push_back(VertexAttrib(3, GL_UNSIGNED_INT, normalize, attributes.back().offset+12, divisor));
+                        vertStride += 12;
                         break;
                 case AttribType::UVEC4:
+                        attributes.push_back(VertexAttrib(4, GL_UNSIGNED_INT, normalize, attributes.back().offset+16, divisor));
+                        vertStride += 16;
                         break;
 
                 case AttribType::IVEC2:
+                        attributes.push_back(VertexAttrib(2, GL_INT, normalize, attributes.back().offset+8, divisor));
+                        vertStride += 8;
                         break;
                 case AttribType::IVEC3:
+                        attributes.push_back(VertexAttrib(3, GL_INT, normalize, attributes.back().offset+12, divisor));
+                        vertStride += 12;
                         break;
                 case AttribType::IVEC4:
+                        attributes.push_back(VertexAttrib(4, GL_INT, normalize, attributes.back().offset+16, divisor));
+                        vertStride += 16;
                         break;
 
                 case AttribType::MAT2:
+                        int offset = attributes.back().offset+8;
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset+8, divisor));
+                        vertStride += 16;
                         break;
                 case AttribType::MAT2x3:
+                        int offset = attributes.back().offset+12;
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset+12, divisor));
+                        vertStride += 24;
                         break;
                 case AttribType::MAT2x4:
+                        int offset = attributes.back().offset+16;
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset+16, divisor));
+                        vertStride += 32;
                         break;
 
                 case AttribType::MAT3:
+                        int offset = attributes.back().offset+12;
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset+12, divisor));
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset+24, divisor));
+                        vertStride += 36;
                         break;
                 case AttribType::MAT3x2:
+                        int offset = attributes.back().offset+8;
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset+8, divisor));
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset+15, divisor));
+                        vertStride += 24;
                         break;
                 case AttribType::MAT3x4:
+                        int offset = attributes.back().offset+16;
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset+16, divisor));
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset+32, divisor));
+                        vertStride += 48;
                         break;
 
                 case AttribType::MAT4:
+                        int offset = attributes.back().offset+16;
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset+16, divisor));
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset+32, divisor));
+                        attributes.push_back(VertexAttrib(4, GL_FLOAT, normalize, offset+48, divisor));
+                        vertStride += 64;
                         break;
                 case AttribType::MAT4x2:
+                        int offset = attributes.back().offset+8;
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset+8, divisor));
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset+16, divisor));
+                        attributes.push_back(VertexAttrib(2, GL_FLOAT, normalize, offset+24, divisor));
+                        vertStride += 32;
                         break;
                 case AttribType::MAT4x3:
+                        int offset = attributes.back().offset+12;
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset, divisor));
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset+12, divisor));
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset+24, divisor));
+                        attributes.push_back(VertexAttrib(3, GL_FLOAT, normalize, offset+36, divisor));
+                        vertStride += 48;
                         break;
         }
 }

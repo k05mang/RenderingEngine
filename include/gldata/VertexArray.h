@@ -17,12 +17,11 @@ class VertexArray
                 int size;//number of values for the attribute, value is 1-4
                 GLenum type;
                 bool normalize;
-                int stride;//stride of the entire vertex
                 int offset;//offset into the vertex for this attribute
                 int divisor;//attribute divisor
 
-                VertexAttrib(int size, GLenum type, bool normalize, int stride, int offset, int divisor) :
-                size(size), type(type), normalize(normalize), stride(stride), offset(offset), divisor(divisor)
+                VertexAttrib(int size, GLenum type, bool normalize, int offset, int divisor) :
+                size(size), type(type), normalize(normalize), offset(offset), divisor(divisor)
                 {}
 
                 ~VertexAttrib() = default;
@@ -31,7 +30,9 @@ class VertexArray
         BufferObject buffer, indices;
         char vertStride;
         vector<VertexAttrib> attributes;
-        enum AttribType{
+
+    public:
+          enum AttribType{
                 FLOAT,
                 DOUBLE,
                 BYTE,
@@ -69,16 +70,13 @@ class VertexArray
                 MAT4x2,
                 MAT4x3
         };
-    public:
         //possibly make this take parameters to determine how the buffers should be used
         //such as dynamic draw vs static draw
         VertexArray();
         ~VertexArray();
 
-        VertexArray(const VertexArray&) = delete;
-        VertexArray& operator=(const VertexArray&) = delete;
-        VertexArray(VertexArray&&) = delete;
-        VertexArray& operator=(VertexArray&&) = delete;
+        VertexArray(const VertexArray&);
+        VertexArray& operator=(const VertexArray&);
 
         void finalize();
         void erase();
