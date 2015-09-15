@@ -30,7 +30,16 @@ VertexArray& operator=(const VertexArray& rhs) : vaoId(rhs.vaoId), buffer(rhs.bu
 }
 
 void finalize(){
-
+      buffer.flush();//buffer vertex data
+      indices.flush();//buffer index data
+      glBindVertexBuffer(*vaoId, 0, *(buffer.bufferId), 0, 0);//bind the vertex buffer to this vertex array
+      glVertexArrayElementBuffer(*vaoId, *(indices.bufferId));//bind the index buffer to this vertex array
+      //iterate over the attributes for the vertex array and initialize them
+      for(int curAttrib = 0; curAttrib < attributes->length(); curAttrib++){
+            glVertexArrayAttribBinding(*vaoId, curAttrib, 0);//link the current attribute to the vertex buffer object
+            VertexAttrib* attribute = attributes->get(curAttrib);
+            glVertexArrayAttribFormat(*vaoId, curAttrib, attribute->size, attribute->type, attribute->normalize, attribute->offset);//specify how the data should be read
+      }
 }
 
 void VertexArray::erase(){

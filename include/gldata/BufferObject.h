@@ -10,6 +10,7 @@
  using namespace std;
 class BufferObject
 {
+        friend class VertexArray;
     private:
         shared_ptr<GLuint> bufferId;
         unsigned int numBytes;
