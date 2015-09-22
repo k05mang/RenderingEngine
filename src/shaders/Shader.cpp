@@ -67,6 +67,7 @@ Shader::Shader(Shader&& moveTarget) : shaderId(move(moveTarget.shaderId)), type(
 
 Shader& Shader::operator=(Shader&& moveTarget)
 {
+      if(this == &rhs) return *this;
     shaderId = move(moveTarget.shaderId);
     type = move(moveTarget.type);
 

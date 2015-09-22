@@ -95,106 +95,106 @@ class VertexArray
         inline void add(unsigned short value);
 
         //vectors
-        inline void add(vec2& value);
-        inline void add(vec3& value);
-        inline void add(vec4& value);
+        inline void add(glm::vec2& value);
+        inline void add(glm::vec3& value);
+        inline void add(glm::vec4& value);
 
-        inline void add(dvec2& value);
-        inline void add(dvec3& value);
-        inline void add(dvec4& value);
+        inline void add(glm::dvec2& value);
+        inline void add(glm::dvec3& value);
+        inline void add(glm::dvec4& value);
 
-        inline void add(uvec2& value);
-        inline void add(uvec3& value);
-        inline void add(uvec4& value);
+        inline void add(glm::uvec2& value);
+        inline void add(glm::uvec3& value);
+        inline void add(glm::uvec4& value);
 
-        inline void add(ivec2& value);
-        inline void add(ivec3& value);
-        inline void add(ivec4& value);
+        inline void add(glm::ivec2& value);
+        inline void add(glm::ivec3& value);
+        inline void add(glm::ivec4& value);
 
         //matrices
-        inline void add(mat2& value);
-        inline void add(mat2x3& value);
-        inline void add(mat2x4& value);
+        inline void add(glm::mat2& value);
+        inline void add(glm::mat2x3& value);
+        inline void add(glm::mat2x4& value);
 
-        inline void add(mat3& value);
-        inline void add(mat3x2& value);
-        inline void add(mat3x4& value);
+        inline void add(glm::mat3& value);
+        inline void add(glm::mat3x2& value);
+        inline void add(glm::mat3x4& value);
 
-        inline void add(mat4& value);
-        inline void add(mat4x2& value);
-        inline void add(mat4x3& value);
+        inline void add(glm::mat4& value);
+        inline void add(glm::mat4x2& value);
+        inline void add(glm::mat4x3& value);
 
         //double matrices
-        inline void add(dmat2& value);
-        inline void add(dmat2x3& value);
-        inline void add(dmat2x4& value);
+        inline void add(glm::dmat2& value);
+        inline void add(glm::dmat2x3& value);
+        inline void add(glm::dmat2x4& value);
 
-        inline void add(dmat3& value);
-        inline void add(dmat3x2& value);
-        inline void add(dmat3x4& value);
+        inline void add(glm::dmat3& value);
+        inline void add(glm::dmat3x2& value);
+        inline void add(glm::dmat3x4& value);
 
-        inline void add(dmat4& value);
-        inline void add(dmat4x2& value);
-        inline void add(dmat4x3& value);
+        inline void add(glm::dmat4& value);
+        inline void add(glm::dmat4x2& value);
+        inline void add(glm::dmat4x3& value);
 
         inline void add(Vertex& value);
 
         inline void addIndex(unsigned int value);
 
-        bool setAttribute(int attribute, vector<float>& data);
-        bool setAttribute(int attribute, vector<double>& data);
-        bool setAttribute(int attribute, vector<int>& data);
-        bool setAttribute(int attribute, vector<char>& data);
-        bool setAttribute(int attribute, vector<short>& data);
-        bool setAttribute(int attribute, vector<unsigned int>& data);
-        bool setAttribute(int attribute, vector<unsigned char>& data);
-        bool setAttribute(int attribute, vector<unsigned short>& data);
-
-        //vectors
-        bool setAttribute(int attribute, vector<vec2>& data);
-        bool setAttribute(int attribute, vector<vec3>& data);
-        bool setAttribute(int attribute, vector<vec4>& data);
-
-        bool setAttribute(int attribute, vector<dvec2>& data);
-        bool setAttribute(int attribute, vector<dvec3>& data);
-        bool setAttribute(int attribute, vector<dvec4>& data);
-
-        bool setAttribute(int attribute, vector<uvec2>& data);
-        bool setAttribute(int attribute, vector<uvec3>& data);
-        bool setAttribute(int attribute, vector<uvec4>& data);
-
-        bool setAttribute(int attribute, vector<ivec2>& data);
-        bool setAttribute(int attribute, vector<ivec3>& data);
-        bool setAttribute(int attribute, vector<ivec4>& data);
-
-        //matrices
-        bool setAttribute(int attribute, vector<mat2>& data);
-        bool setAttribute(int attribute, vector<mat2x3>& data);
-        bool setAttribute(int attribute, vector<mat2x4>& data);
-
-        bool setAttribute(int attribute, vector<mat3>& data);
-        bool setAttribute(int attribute, vector<mat3x2>& data);
-        bool setAttribute(int attribute, vector<mat3x4>& data);
-
-        bool setAttribute(int attribute, vector<mat4>& data);
-        bool setAttribute(int attribute, vector<mat4x2>& data);
-        bool setAttribute(int attribute, vector<mat4x3>& data);
-
-        //double matrices
-        bool setAttribute(int attribute, vector<dmat2>& data);
-        bool setAttribute(int attribute, vector<dmat2x3>& data);
-        bool setAttribute(int attribute, vector<dmat2x4>& data);
-
-        bool setAttribute(int attribute, vector<dmat3>& data);
-        bool setAttribute(int attribute, vector<dmat3x2>& data);
-        bool setAttribute(int attribute, vector<dmat3x4>& data);
-
-        bool setAttribute(int attribute, vector<dmat4>& data);
-        bool setAttribute(int attribute, vector<dmat4x2>& data);
-        bool setAttribute(int attribute, vector<dmat4x3>& data);
-
-        bool setAttribute(int attribute, vector<Vertex>& data);
-
-        bool setindex(int index, unsigned int value);
-        bool setIndices(int indexOffset, vector<unsigned int>& data);
+//        bool setAttribute(int attribute, vector<float>& data);
+//        bool setAttribute(int attribute, vector<double>& data);
+//        bool setAttribute(int attribute, vector<int>& data);
+//        bool setAttribute(int attribute, vector<char>& data);
+//        bool setAttribute(int attribute, vector<short>& data);
+//        bool setAttribute(int attribute, vector<unsigned int>& data);
+//        bool setAttribute(int attribute, vector<unsigned char>& data);
+//        bool setAttribute(int attribute, vector<unsigned short>& data);
+//
+//        //vectors
+//        bool setAttribute(int attribute, vector<glm::vec2>& data);
+//        bool setAttribute(int attribute, vector<glm::vec3>& data);
+//        bool setAttribute(int attribute, vector<glm::vec4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::dvec2>& data);
+//        bool setAttribute(int attribute, vector<glm::dvec3>& data);
+//        bool setAttribute(int attribute, vector<glm::dvec4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::uvec2>& data);
+//        bool setAttribute(int attribute, vector<glm::uvec3>& data);
+//        bool setAttribute(int attribute, vector<glm::uvec4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::ivec2>& data);
+//        bool setAttribute(int attribute, vector<glm::ivec3>& data);
+//        bool setAttribute(int attribute, vector<glm::ivec4>& data);
+//
+//        //matrices
+//        bool setAttribute(int attribute, vector<glm::mat2>& data);
+//        bool setAttribute(int attribute, vector<glm::mat2x3>& data);
+//        bool setAttribute(int attribute, vector<glm::mat2x4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::mat3>& data);
+//        bool setAttribute(int attribute, vector<glm::mat3x2>& data);
+//        bool setAttribute(int attribute, vector<glm::mat3x4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::mat4>& data);
+//        bool setAttribute(int attribute, vector<glm::mat4x2>& data);
+//        bool setAttribute(int attribute, vector<glm::mat4x3>& data);
+//
+//        //double matrices
+//        bool setAttribute(int attribute, vector<glm::dmat2>& data);
+//        bool setAttribute(int attribute, vector<glm::dmat2x3>& data);
+//        bool setAttribute(int attribute, vector<glm::dmat2x4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::dmat3>& data);
+//        bool setAttribute(int attribute, vector<glm::dmat3x2>& data);
+//        bool setAttribute(int attribute, vector<glm::dmat3x4>& data);
+//
+//        bool setAttribute(int attribute, vector<glm::dmat4>& data);
+//        bool setAttribute(int attribute, vector<glm::dmat4x2>& data);
+//        bool setAttribute(int attribute, vector<glm::dmat4x3>& data);
+//
+//        bool setAttribute(int attribute, vector<Vertex>& data);
+//
+//        bool setindex(int index, unsigned int value);
+//        bool setIndices(int indexOffset, vector<unsigned int>& data);
 };

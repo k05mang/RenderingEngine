@@ -26,7 +26,11 @@ BufferObject(const BufferObject& copyTarget) : bufferId(copyTarget.bufferId), nu
 
 }
 
-BufferObject& operator=(const BufferObject& rhs) : bufferId(rhs.bufferId), numBytes(rhs.numBytes), type(rhs.type){
+BufferObject& operator=(const BufferObject& rhs){
+      if(this == &rhs) return *this;
+      bufferId(rhs.bufferId);
+      numBytes(rhs.numBytes);
+      type(rhs.type);
       return *this;
 }
 

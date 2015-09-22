@@ -15,25 +15,24 @@ Vertex::Vertex(const Vertex& copy) : pos(copy.pos), normal(copy.normal), uv(copy
 
 Vertex& Vertex::operator= (const Vertex& copy)
 {
-	if (this != &copy){// handle self assignment
-       pos = copy.pos;
-       normal = copy.normal;
-       uv = copy.uv;
-    }
+	if (this == &copy) return *this;// handle self assignment
+       pos(copy.pos);
+       normal(copy.normal);
+       uv(copy.uv);
 
     return *this;
 }
 
-Vertex::Vertex(Vertex&& moveTarget) : pos(std::move(moveTarget.pos)), normal(std::move(moveTarget.normal)), uv(std::move(moveTarget.uv))
+Vertex::Vertex(Vertex&& moveTarget) : pos(move(moveTarget.pos)), normal(move(moveTarget.normal)), uv(move(moveTarget.uv))
 {
 
 }
 
 Vertex& Vertex::operator= (Vertex&& moveTarget)
 {
-	pos = std::move(moveTarget.pos);
-	normal = std::move(moveTarget.normal);
-	uv = std::move(moveTarget.uv);
+	pos = move(moveTarget.pos);
+	normal = move(moveTarget.normal);
+	uv = move(moveTarget.uv);
 
 	return *this;
 }
@@ -90,7 +89,7 @@ void Vertex::setUV(float u, float v)
 	uv = glm::vec2(u, v);
 }
 
-void Vertex::store(std::vector<float>& buffer)
+void Vertex::store(vector<float>& buffer)
 {
 	buffer.push_back(pos.x);
 	buffer.push_back(pos.y);
@@ -105,7 +104,7 @@ void Vertex::store(std::vector<float>& buffer)
 }
 
 //TODO change this to byte uploading
-void Vertex::store(std::vector<unsigned char>& buffer)
+void Vertex::store(vector<unsigned char>& buffer)
 {
 	auto add = [&buffer](float target){
 

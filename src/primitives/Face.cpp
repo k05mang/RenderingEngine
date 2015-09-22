@@ -23,6 +23,7 @@ Face::Face(Face&& moveTarget) : e1(move(moveTarget.e1)), e2(move(moveTarget.e2))
 
 Face& Face::operator= (Face&& moveTarget)
 {
+      if(this == &rhs) return *this;//handle self assignment
 	e1 = move(moveTarget.e1);
 	e2 = move(moveTarget.e2);
 	e3 = move(moveTarget.e3);

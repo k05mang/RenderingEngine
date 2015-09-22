@@ -10,7 +10,7 @@ VertexArray::VertexArray() : buffer(GL_ARRAY_BUFFER), indices(GL_ELEMENT_ARRAY_B
 {
     GLuint vao[1];
     glGenBuffers(1, vao);
-    vaoId(new GLuint(vao[0]);
+    vaoId(new GLuint(vao[0]));
 }
 
 VertexArray::~VertexArray()
@@ -25,7 +25,12 @@ VertexArray(const VertexArray& rhs) : vaoId(rhs.vaoId), buffer(rhs.buffer), indi
 
 }
 
-VertexArray& operator=(const VertexArray& rhs) : vaoId(rhs.vaoId), buffer(rhs.buffer), indices(rhs.indices), attributes(rhs.attributes){
+VertexArray& operator=(const VertexArray& rhs){
+      if (this == &rhs) return *this; // handle self assignment
+      vaoId(rhs.vaoId);
+      buffer(rhs.buffer);
+      indices(rhs.indices);
+      attributes(rhs.attributes);
       return *this;
 }
 
@@ -212,112 +217,112 @@ inline void VertexArray::add(unsigned char value){buffer.add(value);}
 inline void VertexArray::add(unsigned short value){buffer.add(value);}
 
 //vectors
-inline void VertexArray::add(vec2& value){buffer.add(value);}
-inline void VertexArray::add(vec3& value){buffer.add(value);}
-inline void VertexArray::add(vec4& value){buffer.add(value);}
+inline void VertexArray::add(glm::vec2& value){buffer.add(value);}
+inline void VertexArray::add(glm::vec3& value){buffer.add(value);}
+inline void VertexArray::add(glm::vec4& value){buffer.add(value);}
 
-inline void VertexArray::add(dvec2& value){buffer.add(value);}
-inline void VertexArray::add(dvec3& value){buffer.add(value);}
-inline void VertexArray::add(dvec4& value){buffer.add(value);}
+inline void VertexArray::add(glm::dvec2& value){buffer.add(value);}
+inline void VertexArray::add(glm::dvec3& value){buffer.add(value);}
+inline void VertexArray::add(glm::dvec4& value){buffer.add(value);}
 
-inline void VertexArray::add(uvec2& value){buffer.add(value);}
-inline void VertexArray::add(uvec3& value){buffer.add(value);}
-inline void VertexArray::add(uvec4& value){buffer.add(value);}
+inline void VertexArray::add(glm::uvec2& value){buffer.add(value);}
+inline void VertexArray::add(glm::uvec3& value){buffer.add(value);}
+inline void VertexArray::add(glm::uvec4& value){buffer.add(value);}
 
-inline void VertexArray::add(ivec2& value){buffer.add(value);}
-inline void VertexArray::add(ivec3& value){buffer.add(value);}
-inline void VertexArray::add(ivec4& value){buffer.add(value);}
+inline void VertexArray::add(glm::ivec2& value){buffer.add(value);}
+inline void VertexArray::add(glm::ivec3& value){buffer.add(value);}
+inline void VertexArray::add(glm::ivec4& value){buffer.add(value);}
 
 //matrices
-inline void VertexArray::add(mat2& value){buffer.add(value);}
-inline void VertexArray::add(mat2x3& value){buffer.add(value);}
-inline void VertexArray::add(mat2x4& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat2& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat2x3& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat2x4& value){buffer.add(value);}
 
-inline void VertexArray::add(mat3& value){buffer.add(value);}
-inline void VertexArray::add(mat3x2& value){buffer.add(value);}
-inline void VertexArray::add(mat3x4& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat3& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat3x2& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat3x4& value){buffer.add(value);}
 
-inline void VertexArray::add(mat4& value){buffer.add(value);}
-inline void VertexArray::add(mat4x2& value){buffer.add(value);}
-inline void VertexArray::add(mat4x3& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat4& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat4x2& value){buffer.add(value);}
+inline void VertexArray::add(glm::mat4x3& value){buffer.add(value);}
 
 //double matrices
-inline void VertexArray::add(dmat2& value){buffer.add(value);}
-inline void VertexArray::add(dmat2x3& value){buffer.add(value);}
-inline void VertexArray::add(dmat2x4& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat2& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat2x3& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat2x4& value){buffer.add(value);}
 
-inline void VertexArray::add(dmat3& value){buffer.add(value);}
-inline void VertexArray::add(dmat3x2& value){buffer.add(value);}
-inline void VertexArray::add(dmat3x4& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat3& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat3x2& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat3x4& value){buffer.add(value);}
 
-inline void VertexArray::add(dmat4& value){buffer.add(value);}
-inline void VertexArray::add(dmat4x2& value){buffer.add(value);}
-inline void VertexArray::add(dmat4x3& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat4& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat4x2& value){buffer.add(value);}
+inline void VertexArray::add(glm::dmat4x3& value){buffer.add(value);}
 
 inline void VertexArray::add(Vertex& value){buffer.add(value);}
 
 inline void VertexArray::addIndex(unsigned int value){indices.add(value);}
 
-bool VertexArray::setAttribute(int attribute, vector<float>& data){
-      if(attribute >= attributes->length()){
-            cerr << "Requested attribute out of bounds for vertex array attributes" << endl;
-            return false;
-      }else{
-
-      }
-}
-bool VertexArray::setAttribute(int attribute, vector<double>& data);
-bool VertexArray::setAttribute(int attribute, vector<int>& data);
-bool VertexArray::setAttribute(int attribute, vector<char>& data);
-bool VertexArray::setAttribute(int attribute, vector<short>& data);
-bool VertexArray::setAttribute(int attribute, vector<unsigned int>& data);
-bool VertexArray::setAttribute(int attribute, vector<unsigned char>& data);
-bool VertexArray::setAttribute(int attribute, vector<unsigned short>& data);
-
-//vectors
-bool VertexArray::setAttribute(int attribute, vector<vec2>& data);
-bool VertexArray::setAttribute(int attribute, vector<vec3>& data);
-bool VertexArray::setAttribute(int attribute, vector<vec4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<dvec2>& data);
-bool VertexArray::setAttribute(int attribute, vector<dvec3>& data);
-bool VertexArray::setAttribute(int attribute, vector<dvec4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<uvec2>& data);
-bool VertexArray::setAttribute(int attribute, vector<uvec3>& data);
-bool VertexArray::setAttribute(int attribute, vector<uvec4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<ivec2>& data);
-bool VertexArray::setAttribute(int attribute, vector<ivec3>& data);
-bool VertexArray::setAttribute(int attribute, vector<ivec4>& data);
-
-//matrices
-bool VertexArray::setAttribute(int attribute, vector<mat2>& data);
-bool VertexArray::setAttribute(int attribute, vector<mat2x3>& data);
-bool VertexArray::setAttribute(int attribute, vector<mat2x4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<mat3>& data);
-bool VertexArray::setAttribute(int attribute, vector<mat3x2>& data);
-bool VertexArray::setAttribute(int attribute, vector<mat3x4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<mat4>& data);
-bool VertexArray::setAttribute(int attribute, vector<mat4x2>& data);
-bool VertexArray::setAttribute(int attribute, vector<mat4x3>& data);
-
-//double matrices
-bool VertexArray::setAttribute(int attribute, vector<dmat2>& data);
-bool VertexArray::setAttribute(int attribute, vector<dmat2x3>& data);
-bool VertexArray::setAttribute(int attribute, vector<dmat2x4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<dmat3>& data);
-bool VertexArray::setAttribute(int attribute, vector<dmat3x2>& data);
-bool VertexArray::setAttribute(int attribute, vector<dmat3x4>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<dmat4>& data);
-bool VertexArray::setAttribute(int attribute, vector<dmat4x2>& data);
-bool VertexArray::setAttribute(int attribute, vector<dmat4x3>& data);
-
-bool VertexArray::setAttribute(int attribute, vector<Vertex>& data);
-
-bool setindex(int index, unsigned int value);
-bool setIndices(int indexOffset, vector<unsigned int>& data);
+//bool VertexArray::setAttribute(int attribute, vector<float>& data){
+//      if(attribute >= attributes->length()){
+//            cerr << "Requested attribute out of bounds for vertex array attributes" << endl;
+//            return false;
+//      }else{
+//
+//      }
+//}
+//bool VertexArray::setAttribute(int attribute, vector<double>& data);
+//bool VertexArray::setAttribute(int attribute, vector<int>& data);
+//bool VertexArray::setAttribute(int attribute, vector<char>& data);
+//bool VertexArray::setAttribute(int attribute, vector<short>& data);
+//bool VertexArray::setAttribute(int attribute, vector<unsigned int>& data);
+//bool VertexArray::setAttribute(int attribute, vector<unsigned char>& data);
+//bool VertexArray::setAttribute(int attribute, vector<unsigned short>& data);
+//
+////vectors
+//bool VertexArray::setAttribute(int attribute, vector<glm::vec2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::vec3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::vec4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::dvec2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dvec3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dvec4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::uvec2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::uvec3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::uvec4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::ivec2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::ivec3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::ivec4>& data);
+//
+////matrices
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat2x3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat2x4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat3x2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat3x4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat4>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat4x2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::mat4x3>& data);
+//
+////double matrices
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat2x3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat2x4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat3>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat3x2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat3x4>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat4>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat4x2>& data);
+//bool VertexArray::setAttribute(int attribute, vector<glm::dmat4x3>& data);
+//
+//bool VertexArray::setAttribute(int attribute, vector<Vertex>& data);
+//
+//bool setindex(int index, unsigned int value);
+//bool setIndices(int indexOffset, vector<unsigned int>& data);

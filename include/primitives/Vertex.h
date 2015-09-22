@@ -3,6 +3,7 @@
 #include <vec2.hpp>
 #include <vector>
 
+using namespace std;
 class Vertex{
 private:
 	glm::vec3 pos;
@@ -60,7 +61,7 @@ public:
 	*/
 	void setUV(float u, float v);
 
-	void store(std::vector<float>& buffer);
+	void store(vector<float>& buffer);
 
-	void store(std::vector<unsigned char>& buffer);
+	void store(vector<unsigned char>& buffer);
 };
