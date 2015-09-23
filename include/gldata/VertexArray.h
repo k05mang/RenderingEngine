@@ -85,6 +85,9 @@ class VertexArray
         void erase();
         void addAttrib(AttribType type, bool normalize, int divisor);
 
+        void bind();
+        void unbind();
+
         inline void add(float value);
         inline void add(double value);
         inline void add(int value);

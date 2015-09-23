@@ -16,6 +16,21 @@ Face::~Face()
 
 }
 
+Face(const Face& copyTarget) : e1(moveTarget.e1), e2(moveTarget.e2), e3(moveTarget.e3)
+{
+
+}
+
+Face& operator= (const Face& rhs)
+{
+      if(this == &rhs) return *this;//handle self assignment
+	e1(moveTarget.e1);
+	e2(moveTarget.e2);
+	e3(moveTarget.e3);
+
+	return *this;
+}
+
 Face::Face(Face&& moveTarget) : e1(move(moveTarget.e1)), e2(move(moveTarget.e2)), e3(move(moveTarget.e3))
 {
 
@@ -23,7 +38,6 @@ Face::Face(Face&& moveTarget) : e1(move(moveTarget.e1)), e2(move(moveTarget.e2))
 
 Face& Face::operator= (Face&& moveTarget)
 {
-      if(this == &rhs) return *this;//handle self assignment
 	e1 = move(moveTarget.e1);
 	e2 = move(moveTarget.e2);
 	e3 = move(moveTarget.e3);
@@ -31,21 +45,21 @@ Face& Face::operator= (Face&& moveTarget)
 	return *this;
 }
 
-void Face::storePrim(vector<int>& buffer)
+void Face::storePrim(VertexArray& buffer)
 {
-	buffer.push_back(e1.emitVert);
-	buffer.push_back(e2.emitVert);
-	buffer.push_back(e3.emitVert);
+	buffer.add(e1.emitVert);
+	buffer.add(e2.emitVert);
+	buffer.add(e3.emitVert);
 }
 
-void Face::storePrimAdj(vector<int>& buffer)
+void Face::storePrimAdj(VertexArray& buffer)
 {
-	buffer.push_back(e1.emitVert);
-	buffer.push_back(e1.opposite->emitVert);
+	buffer.add(e1.emitVert);
+	buffer.add(e1.opposite->emitVert);
 
-	buffer.push_back(e2.emitVert);
-	buffer.push_back(e2.opposite->emitVert);
+	buffer.add(e2.emitVert);
+	buffer.add(e2.opposite->emitVert);
 
-	buffer.push_back(e3.emitVert);
-	buffer.push_back(e3.opposite->emitVert);
+	buffer.add(e3.emitVert);
+	buffer.add(e3.opposite->emitVert);
 }

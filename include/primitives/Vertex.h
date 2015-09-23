@@ -14,10 +14,10 @@ public:
 		float nx = 0.33f, float ny = 0.33f, float nz = 0.33f,
 		float u = 0.0f, float v = 0.0f);
 	~Vertex() = default;
-	Vertex(const Vertex& copy);
-	Vertex& operator= (const Vertex& copy);
+	Vertex(const Vertex& copyTarget);
+	Vertex& operator= (const Vertex& rhs);
 	Vertex(Vertex&& moveTarget);
-	Vertex& operator= (Vertex&& moveTarget);
+	Vertex& operator= (Vertex&& rhs);
 
 	bool operator== (const Vertex& equal) const;
 

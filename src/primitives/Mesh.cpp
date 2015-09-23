@@ -1,7 +1,7 @@
 #include "Mesh.h"
 #include <vector>
 
-Mesh::Mesh()
+Mesh::Mesh() : finished(false)
 {
       //ctor
 }
@@ -11,7 +11,7 @@ Mesh::~Mesh()
       //dtor
 }
 
-Mesh::Mesh(const Mesh& copyTarget) : vertices(copyTarget.vertices), faces(copyTarget.faces)
+Mesh::Mesh(const Mesh& copyTarget) : vertices(copyTarget.vertices), faces(copyTarget.faces), edgeMap(copyTarget.edgeMap)
 {
       //copy ctor
 }
@@ -24,25 +24,40 @@ Mesh& Mesh::operator=(const Mesh& rhs)
       return *this;
 }
 
-Mesh(Mesh&& moveTarget) : vertices(move(moveTarget.vertices)), faces(move(moveTarget.faces))
+Mesh(Mesh&& moveTarget) : vertices(move(moveTarget.vertices)), faces(move(moveTarget.faces)), edgeMap(move(rhs.edgeMap))
 {
 
 }
 
 Mesh& operator=(Mesh&& rhs)
 {
-      if (this == &rhs) return *this; // handle self assignment
       vertices(move(rhs.vertices));
       faces(move(rhs.faces));
       return *this;
 }
 
-void add(Vertex vert)
+void add(Vertex& vert)
 {
-      vertices.add(vert);
+      if(!finished){
+            vertices.add(vert);
+      }
 }
 
-void add(Face face)
+void add(Face& face)
 {
-      faces.add(face);
+      if(!finished){
+            faces.add(face);
+
+      }
+}
+
+void addIndices(VertexArray& vao, GLenum type)
+{
+
+}
+
+void finalize()
+{
+      edgeMap.clear();
+      finished = true;
 }

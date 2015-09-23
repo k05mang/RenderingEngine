@@ -8,17 +8,17 @@ Vertex::Vertex(float x, float y, float z,
 	normal / glm::length(normal);
 }
 
-Vertex::Vertex(const Vertex& copy) : pos(copy.pos), normal(copy.normal), uv(copy.uv)
+Vertex::Vertex(const Vertex& copyTarget) : pos(copyTarget.pos), normal(copyTarget.normal), uv(copyTarget.uv)
 {
 
 }
 
-Vertex& Vertex::operator= (const Vertex& copy)
+Vertex& Vertex::operator= (const Vertex& copyTarget)
 {
-	if (this == &copy) return *this;// handle self assignment
-       pos(copy.pos);
-       normal(copy.normal);
-       uv(copy.uv);
+	if (this == &copyTarget) return *this;// handle self assignment
+       pos(copyTarget.pos);
+       normal(copyTarget.normal);
+       uv(copyTarget.uv);
 
     return *this;
 }

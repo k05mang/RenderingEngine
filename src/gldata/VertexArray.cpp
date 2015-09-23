@@ -49,7 +49,15 @@ void finalize(){
 
 void VertexArray::erase(){
       GLuint vao[]{*vaoId};
-      glDeleteVertexArrays(1, vaoId);
+      glDeleteVertexArrays(1, vao);
+}
+
+void bind(){
+      glBindVertexArray(*vaoId);
+}
+
+void unbind(){
+      glBindVertexArray(0);
 }
 
 void VertexArray::addAttrib(AttribType type, bool normalize, int divisor){
