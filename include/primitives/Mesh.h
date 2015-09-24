@@ -10,18 +10,19 @@
 #include <GL/glcorearb.h>
 
 #include <vector>
+#include <unordered_map>
+#include <utility>
 
 using namespace std;
 class Mesh
 {
       private:
             bool finished;
+            GLenum indexOrder;//indicates how the vertex indices
             vector<Vertex> vertices; //holds the vertices for the mesh
             vector<Face> faces; //holds the faces of the mesh
-            vector<vector<Face::HalfEdge*>> edgeMap;//mapping of the halfEdges for the mesh
-            //each index of outer most array indicates the index of a vertex in the mesh
-            //the inner vector for each of these, indicates the halfedges that eminate from that vertex
-            //this map is used to create a halfedge data structure
+            unordered_map<pair<int, int>, Face::HalfEdge*> edgeMap;//mapping of the halfEdges for the mesh
+            //each pair of int's corresponds to an edge formed by a halfEdge vertex and its next halfEdge vertex
       public:
             /** Default constructor */
             Mesh();

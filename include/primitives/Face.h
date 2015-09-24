@@ -5,8 +5,8 @@ using namespace std;
 
 class Face
 {
-private:
-	class HalfEdge
+public:
+      class HalfEdge
 	{
 	public:
 		int emitVert;
@@ -20,7 +20,7 @@ private:
             HalfEdge(HalfEdge&& moveTarget);
             HalfEdge& operator= (HalfEdge&& moveTarget);
 	}e1, e2, e3;//edges of this face
-public:
+
 	Face(int v1, int v2, int v3);
 	~Face();
 	Face(const Face& copyTarget);

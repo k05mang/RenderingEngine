@@ -34,9 +34,9 @@ VertexArray& operator=(const VertexArray& rhs){
       return *this;
 }
 
-void finalize(){
-      buffer.flush();//buffer vertex data
-      indices.flush();//buffer index data
+void finalize(GLenum bufferUsage){
+      buffer.flush(bufferUsage);//buffer vertex data
+      indices.flush(bufferUsage);//buffer index data
       glBindVertexBuffer(*vaoId, 0, *(buffer.bufferId), 0, 0);//bind the vertex buffer to this vertex array
       glVertexArrayElementBuffer(*vaoId, *(indices.bufferId));//bind the index buffer to this vertex array
       //iterate over the attributes for the vertex array and initialize them

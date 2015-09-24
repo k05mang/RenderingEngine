@@ -53,6 +53,13 @@ int BufferObject::size()
     return numBytes;
 }
 
+void flush(GLenum usage){
+    glNamedBufferData(*bufferId, data.size(), data.data(), usage);
+    //clear the data store since it has been buffered onto the GPU
+    data.clear();
+    data.shrink_to_fit();
+}
+
 inline void BufferObject::add(float value){
 
     unsigned char const * bytes = reinterpret_cast<unsigned char const *>(&value);
@@ -283,13 +290,6 @@ void BufferObject::add(glm::dmat4x3& value){
 
 void BufferObject::add(Vertex& value){
     value.store(data);
-}
-
-void flush(GLenum usage){
-    glNamedBufferData(*bufferId, data.size(), data.data(), usage);
-    //clear the data store since it has been buffered onto the GPU
-    data.clear();
-    data.shrink_to_fit();
 }
 
 //sets the value of the vertex buffer data store that is on the GPU

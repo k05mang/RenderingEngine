@@ -3,8 +3,10 @@
 #include <GL/gl.h>
 #include <GL/glext.h>
 #include <GL/glcorearb.h>
-#include <vector>
+
 #include "BufferObject.h"
+
+#include <vector>
 #include <glm.hpp>
 #include <memory>
 
@@ -81,7 +83,7 @@ class VertexArray
         VertexArray(VertexArray&&) = delete;
         VertexArray& operator=(VertexArray&&) = delete;
 
-        void finalize();
+        void finalize(GLenum bufferUsage);
         void erase();
         void addAttrib(AttribType type, bool normalize, int divisor);
 
