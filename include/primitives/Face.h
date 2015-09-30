@@ -1,6 +1,7 @@
 #pragma once
 #include "gldata/VertexArray.h"
 #include <vector>
+
 using namespace std;
 
 class Face
@@ -11,7 +12,7 @@ public:
 	public:
 		int emitVert;
 		Face *parent, *adj;
-		HalfEdge *next, *opposite;
+		HalfEdge *next, *prev, *opposite;
 
 		HalfEdge(int eVert);
 		~HalfEdge();

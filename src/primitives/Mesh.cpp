@@ -101,10 +101,15 @@ void addIndices(VertexArray& vao, GLenum type)
       switch(type){
             //set indices for rendering points
             case GL_POINT:
+                  //create a value for each vertex in the vertex array
+                  for(unsigned int curIndex = 0; curIndex < vertices.size(); curIndex++){
+                        vao.addIndex(curIndex);
+                  }
                   break;
 
             //set indices for rendering different line types
             case GL_LINES:
+                  unordered_map<Face::HalfEdge*, bool> visited{};
                   break;
             case GL_LINE_STRIP:
                   break;

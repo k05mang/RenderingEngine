@@ -9,6 +9,10 @@ Face::Face(int v1, int v2, int v3) : e1(v1), e2(v2), e3(v3)
 	e1.next = &e2;
 	e2.next = &e3;
 	e3.next = &e1;
+
+	e1.prev = &e3;
+	e2.prev = &e1;
+	e3.prev = &e2;
 }
 
 Face::~Face()
